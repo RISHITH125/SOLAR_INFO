@@ -1,0 +1,125 @@
+:root {
+    --size: 50px;
+}
+
+body{
+    background-color: black;
+}
+h1 { 
+    color: green; 
+    text-align: center; 
+} 
+
+h3 { 
+    text-align: center; 
+    margin-bottom: 100px; 
+} 
+
+.sun{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--size); 
+    height: var(--size); 
+    border-radius: 50%; 
+    margin: auto; 
+    transform: translate(-50%,-50%);
+    background-color:white;
+    box-shadow:
+inset 0 0 10px goldenrod,inset 0 0 9px goldenrod, 
+0 0 20px orangered,0 0 19px orangered;
+
+
+}
+.mercury { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px; 
+    height: 8px; 
+    border-radius: 50%; 
+    margin: auto; 
+    transform: translate(-50%,-50%);
+    background-color:#B7B8B9; 
+    animation: GFG-me 5s infinite linear; 
+}
+.venus { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 9px; 
+    height: 9px; 
+    border-radius: 50%; 
+    margin: auto; 
+    transform: translate(-50%,-50%);
+    background-color: #FFC649; 
+    animation: GFG-ve 5s infinite linear; 
+}
+
+.earth { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    margin: auto; 
+    transform: translate(-50%,-50%);
+    background-color:blue; 
+    animation: GFG-ea 5s infinite linear; 
+}
+.mars { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    margin: auto; 
+    transform: translate(-50%,-50%);
+    background-color:#9C2E35; 
+    animation: GFG-ma 5s infinite linear; 
+}
+@keyframes GFG-me { 
+    0% { 
+        transform: rotate(0deg)  
+              translateX(70px) rotate(0deg); 
+    } 
+
+    100% { 
+        transform: rotate(360deg)  
+              translateX(70px) rotate(0deg); 
+    } 
+} 
+@keyframes GFG-ve { 
+    0% { 
+        transform: rotate(0deg)  
+              translateY(80px)  rotate(10deg); 
+    } 
+
+    100% { 
+        transform: rotate(360deg)  
+        translateY(80px)  rotate(0deg); 
+    } 
+}  
+
+@keyframes GFG-ea {
+0% {
+transform: rotate(45deg) translateY(-100px) rotate(45deg);
+}
+
+100% {
+transform: rotate(405deg) translateY(-100px) rotate(45deg);
+}
+}
+@keyframes GFG-ma { 
+    0% { 
+        transform: rotate(0deg)  
+              translateY(120px)  rotate(10deg); 
+    } 
+
+    100% { 
+        transform: rotate(360deg)  
+        translateY(120px)  rotate(0deg); 
+    } 
+}
