@@ -1,4 +1,4 @@
-import './App.css'
+
 import System from './system/system'
 
 function App() {

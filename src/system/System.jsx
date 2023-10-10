@@ -4,7 +4,7 @@ import './system.css'
 const System = () => {
   return (
     <>
-        <div>
+        <div className="main">
             <div className="sun"></div>
             <div className="mercury"></div>
             <div className="venus"></div>    
