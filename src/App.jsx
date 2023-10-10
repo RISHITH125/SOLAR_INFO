@@ -1,5 +1,5 @@
 
-import System from './system/system'
+import System from './system/System'
 
 function App() {
 

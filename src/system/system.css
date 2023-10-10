@@ -1,9 +1,26 @@
 :root {
     --size-su: 100px;
-    --size-me: 7px;
-    --size-ve: 8px;
-    --size-ea: 9px;
-    --size-ma: 8px;
+    --size-me: 16px;
+    --size-ve: 18px;
+    --size-ea: 20px;
+    --size-ma: 16px;
+    --size-ju: 32px;
+    --size-sa: 24px;
+    --size-ur: 20px;
+    --size-ne: 20px;
+
+    --planet_sep :40px;
+
+    --dist_me: 80px;
+    --dist_ve: calc(var(--dist_me) + var(--planet_sep));
+    --dist_ea: calc(var(--dist_ve) + var(--planet_sep));
+    --dist_ma: calc(var(--dist_ea) + var(--planet_sep));
+    --dist_ju: calc(var(--dist_ma) + var(--planet_sep));
+    --dist_sa: calc(var(--dist_ju) + var(--planet_sep));
+    --dist_ur: calc(var(--dist_sa) + var(--planet_sep));
+    --dist_ne: calc(var(--dist_ur) + var(--planet_sep));
+
+    --earth-days:2s;
 }
 * {margin: 0; padding: 0;}
 
@@ -15,10 +32,9 @@
     position: relative;
     width: 100vw;
     height: 100vh;
-    border : 4px solid white;
 }
 .sun {
-    border: 4px solid white;
+    /* border: 4px solid white; */
     position: absolute;
     /* top: 50%;
     left: 50%; */
@@ -27,11 +43,12 @@
     border-radius: 50%;
     /* transform: translate(-50%, -50%); */
     background-color: white;
-    box-shadow: inset 0 0 10px goldenrod, inset 0 0 9px goldenrod, 0 0 20px orangered, 0 0 19px orangered;
+    box-shadow: inset 0 0 10px orange,inset 0 0 20px orange, inset 0 0 10px orange, 0 0 20vh goldenrod, 0 0 30vh goldenrod, 0 0 100vh goldenrod;
+    /* box-shadow: inset 0 0 10px white,inset 0 0 100px white, inset 0 0 9px white, 0 0 100px white, 0 0 1000vh white, 0 0 1000vh white; */
 }
 
 
-.mercury, .venus, .earth, .mars {
+.mercury, .venus, .earth, .mars , .jupyter, .saturn , .uranus, .neptune{
     position: absolute;
     border-radius: 50%;
     transform: translate(-50%, -50%);
@@ -41,64 +58,173 @@
     width: var(--size-me);
     height: var(--size-me);
     background-color: #B7B8B9;
-    animation: ROTATE-me 5s infinite linear;
+    animation: ROTATE-me calc((88/365)*var(--earth-days)) infinite linear;
 }
 
 .venus {
     width: var(--size-ve);
     height: var(--size-ve);
     background-color: #FFC649;
-    animation: ROTATE-ve 5s infinite linear;
+    animation: ROTATE-ve calc((225/365)*var(--earth-days)) infinite linear;
 }
 
 .earth {
     width: var(--size-ea);
     height: var(--size-ea);
     background-color: blue;
-    animation: ROTATE-ea 5s infinite linear;
+    animation: ROTATE-ea var(--earth-days) infinite linear;
 }
 
 .mars {
     width: var(--size-ma);
     height: var(--size-ma);
     background-color: #9C2E35;
-    animation: ROTATE-ma 5s infinite linear;
+    animation: ROTATE-ma calc((687/365)*var(--earth-days)) infinite linear;
 }
-
+.jupyter {
+    width: var(--size-ju);
+    height: var(--size-ju);
+    background-color: #bcafb2 ;
+    animation: ROTATE-ju calc((4333/365)*var(--earth-days)) infinite linear;
+}
+.saturn {
+    max-width: 40px;
+    max-height: 28px;
+    width: var(--size-sa);
+    height: var(--size-sa);
+    justify-content: center;
+    align-items: center;
+    background-color:#f7b565;
+    animation: ROTATE-sa calc((10756/365)*var(--earth-days)) infinite linear;
+    /* overflow: hidden; */
+}
+.top
+{
+    position: relative;
+  width:var(--size-sa);
+  height:calc(var(--size-sa)/2);
+  top:-30px;
+  /* height: calc(var(--size-sa)/2); */
+  border-radius:18px 18px 0px 0px;
+  background-color: #ffc680;
+}
+.ring{
+        rotate: 0deg;
+        border:solid 5px #633e11;
+        box-shadow: none !important;
+        width: 44px;
+        height: 30px;
+        /* border: solid 5px #5f5b48; */
+        border-radius: 50%;
+        position: relative;
+        left: -10.5px;
+        top: -4px;
+        transform: rotate3d(1, 0, 0,60deg); 
+}
+.uranus {
+    width: var(--size-ur);
+    height: var(--size-ur);
+    background-color: #4FD0E7;
+    animation: ROTATE-ur calc((30687/365)*var(--earth-days)) infinite linear;
+}
+.neptune {
+    width: var(--size-ne);
+    height: var(--size-ne);
+    background-color: #2990B5;
+    animation: ROTATE-ne calc((60190/365)*var(--earth-days)) infinite linear;
+}
 @keyframes ROTATE-me {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+    0% { 
+        transform: rotate(0deg)  
+              translateX(var(--dist_me)) rotate(45deg); 
+    } 
+
+    100% { 
+        transform: rotate(360deg)  
+              translateX(var(--dist_me)) rotate(0deg); 
+    } 
+} 
 
 @keyframes ROTATE-ve {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+    0% { 
+        transform: rotate(45deg)  
+              translateY(var(--dist_ve))  rotate(0deg); 
+    } 
+
+    100% { 
+        transform: rotate(405deg)  
+        translateY(var(--dist_ve))  rotate(0deg); 
+    } 
+}  
 
 @keyframes ROTATE-ea {
     0% {
-        transform: rotate(0deg);
+        transform: rotate(90deg) translateY(var(--dist_ea))
+        rotate(0deg);
     }
+
     100% {
-        transform: rotate(360deg);
+        transform: rotate(450deg) translateY(var(--dist_ea)) rotate(0deg);
     }
 }
 
 @keyframes ROTATE-ma {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+    0% { 
+        transform: rotate(135deg)  
+              translateY(var(--dist_ma))  rotate(0deg); 
+    } 
+
+    100% { 
+        transform: rotate(495deg)  
+        translateY(var(--dist_ma))  rotate(0deg); 
+    } 
 }
 
+@keyframes ROTATE-ju {
+    0% { 
+        transform: rotate(180deg)  
+              translateY(var(--dist_ju))  rotate(0deg); 
+    } 
+
+    100% { 
+        transform: rotate(540deg)  
+        translateY(var(--dist_ju))  rotate(0deg); 
+    } 
+}
+
+@keyframes ROTATE-sa {
+    0% { 
+        transform: rotate(225deg)  
+              translateY(var(--dist_sa))  rotate(0deg); 
+    } 
+
+    100% { 
+        transform: rotate(585deg)  
+        translateY(var(--dist_sa))  rotate(0deg); 
+    } 
+}
+
+@keyframes ROTATE-ur {
+    0% { 
+        transform: rotate(270deg)  
+              translateY(var(--dist_ur))  rotate(0deg); 
+    } 
+
+    100% { 
+        transform: rotate(630deg)  
+        translateY(var(--dist_ur))  rotate(0deg); 
+    } 
+}
+
+@keyframes ROTATE-ne {
+    0% { 
+        transform: rotate(315deg)  
+              translateY(var(--dist_ne))  rotate(0deg); 
+    } 
+
+    100% { 
+        transform: rotate(675deg)  
+        translateY(var(--dist_ne))  rotate(0deg); 
+    } 
+}
 
