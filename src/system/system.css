@@ -5,7 +5,7 @@
     --size-ea: 20px;
     --size-ma: 16px;
     --size-ju: 32px;
-    --size-sa: 24px;
+    --size-sa: 26px;
     --size-ur: 20px;
     --size-ne: 20px;
 
@@ -50,7 +50,7 @@
     /* transform: translate(-50%, -50%); */
     background-color: white;
     box-shadow: inset 0 0 10px orange,inset 0 0 20px orange, inset 0 0 10px orange, 0 0 20vh goldenrod, 0 0 30vh goldenrod, 0 0 100vh goldenrod;
-    /* box-shadow: inset 0 0 10px white,inset 0 0 100px white, inset 0 0 9px white, 0 0 100px white, 0 0 1000vh white, 0 0 1000vh white; */
+    /* box-shadow: inset 0 0 10px white,inset 0 0 100px white, inset 0 0 9px white, 0 0 100px white, 0 0 1000vh white, 0 0 1000vh white;    */
 }
 
 
@@ -61,11 +61,49 @@
 }
 
 .mercury {
+    
     width: var(--size-me);
     height: var(--size-me);
     background-color: #B7B8B9;
     animation: ROTATE-me calc((88/365)*var(--earth-days)) infinite linear;
+    overflow: hidden;
+    
 }
+.mercury::before{
+    content:'';
+    position:absolute;
+    display :block;
+    border-radius: 50%;
+    width: var(--size-me);
+    height: var(--size-me);
+    background-repeat: no-repeat; 
+    background-image: radial-gradient(circle,#504E51 1%,#B7B8B9 10%, transparent 3%),
+                      radial-gradient(circle,#B7B8B9 1%,#504E51 10%, transparent 3%),
+                      radial-gradient(circle ,#504E51 11%,#B7B8B9 30%, transparent 3%),
+                      radial-gradient(circle,#B7B8B9 1%,#504E51 10%, transparent 3%),
+                      radial-gradient(circle ,#504E51 11%,#B7B8B9 30%, transparent 3%),
+                      radial-gradient(circle,#B7B8B9 1%,#504E51 10%, transparent 3%),
+                      radial-gradient(circle ,#504E51 11%,#B7B8B9 30%, transparent 3%),
+                      radial-gradient(circle,#B7B8B9 0%,#504E51 15%, transparent 3%),
+                      radial-gradient(circle ,#504E51 15%,#B7B8B9 30%, transparent 3%),
+                      radial-gradient(circle,#B7B8B9 0%,#504E51 16%, transparent 3%),
+                      radial-gradient(circle ,#504E51 16%,#B7B8B9 40%, transparent 3%),
+                      radial-gradient(circle,#504E51 1%,#B7B8B9 30%, transparent 3%),
+                      radial-gradient(circle,#504E51 1%,#B7B8B9 15%, transparent 3%);
+    background-size: 14px 14px;
+    background-position:-3px 3px,-7px -1px,-7px -1px, -2px 8px, -2px 8px , 1px 3px ,1px 3px,7px -1px,7px -1px,1px -5px , 1px -5px,6px 6px,-2.5px -1px;
+}
+.mercury::after{
+    content:'';
+    position:absolute;
+    display :block;
+    border-radius: 50%;
+    width: var(--size-me);
+    height: var(--size-me);
+    box-shadow: inset -5px -1px 10px 1px rgba(0, 0, 0, 0.8);
+}
+
+
 
 .venus {
     width: var(--size-ve);
@@ -86,6 +124,9 @@
     height: var(--size-ma);
     background-color: #9C2E35;
     animation: ROTATE-ma calc((687/365)*var(--earth-days)) infinite linear;
+    position: relative;
+    border-radius: 50%; 
+
 }
 .jupyter {
     width: var(--size-ju);
@@ -104,27 +145,27 @@
     animation: ROTATE-sa calc((10756/365)*var(--earth-days)) infinite linear;
     /* overflow: hidden; */
 }
-.top
+.tops
 {
     position: relative;
-  width:var(--size-sa);
+  width:calc(var(--size-sa)-8px);
   height:calc(var(--size-sa)/2);
   top:-30px;
   /* height: calc(var(--size-sa)/2); */
-  border-radius:18px 18px 0px 0px;
+  border-radius:22px 22px 0px 0px;
   background-color: #ffc680;
 }
-.ring{
+.rings{
         rotate: 0deg;
-        border:solid 5px #633e11;
+        border:solid 6px #633e11;
         box-shadow: none !important;
-        width: 44px;
+        width: 50px;
         height: 30px;
         /* border: solid 5px #5f5b48; */
         border-radius: 50%;
         position: relative;
-        left: -10.5px;
-        top: -4px;
+        left: -12px;
+        top: -3px;
         transform: rotate3d(1, 0, 0,60deg); 
 }
 .uranus {
@@ -132,6 +173,30 @@
     height: var(--size-ur);
     background-color: #4FD0E7;
     animation: ROTATE-ur calc((30687/365)*var(--earth-days)) infinite linear;
+}
+.topu
+{
+        position: relative;
+        width:calc(var(--size-ur) -4px);
+        height:calc(var(--size-ur)/2);
+        top:-30px;
+    
+        /* height: calc(var(--size-sa)/2); */
+        border-radius:100px 100px 0px 0px;
+        background-color: #5ccee2;
+}
+.ringu{
+        rotate: 0deg;
+        border:solid 4px #ACE5EE;
+        box-shadow: none !important;
+        width: 34px;
+        height: 30px;
+        /* border: solid 5px #5f5b48; */
+        border-radius: 50%;
+        position: relative;
+        left: -7px;
+        top: -5px;
+        transform: rotate3d(1, 0, 0,65deg); 
 }
 .neptune {
     width: var(--size-ne);
@@ -142,12 +207,12 @@
 @keyframes ROTATE-me {
     0% { 
         transform: rotate(0deg)  
-              translateX(var(--dist_me)) rotate(45deg); 
+              translateX(var(--dist_me)) rotate(-5deg); 
     } 
 
     100% { 
         transform: rotate(360deg)  
-              translateX(var(--dist_me)) rotate(0deg); 
+              translateX(var(--dist_me)) rotate(-5deg); 
     } 
 } 
 
