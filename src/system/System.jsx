@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './system.css'
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
+
 
 const System = () => {
   const main = useRef(null); // main is like a pointer | main.current = *main
@@ -39,28 +41,52 @@ const System = () => {
   }, [main])
 
   return ( 
-    <>
+    <div className='overflow-hidden'>
         <div ref={main} className={`main`} style={mainStyle}>
             <div className="sun flex items-center">
               <h1 className={`relative font-thin text-orange-400 left-[3vw]`} style={opacityClass}>SOLAR</h1>
               <h1 className={`relative text-white left-[4vw] info`} style={opacityClass}>INFO</h1>
             </div>
-            <div className="mercury"></div>
-            <div className="venus"></div>    
-            <div className="earth"></div> 
-            <div className="mars"></div> 
-            <div className="jupyter"></div>
-            <div className="saturn">
-              <div className="rings"></div>
-              <div className="tops"></div>
-            </div>
-            <div className="uranus">
-              <div className="ringu"></div>
-              <div className="topu"></div>
-            </div>
-            <div className="neptune"></div>
+			
+			<Link to="/mercury">
+        <div className="mercury"></div>	
+			</Link>
+
+			<Link to="/venus">
+        <div className="venus"></div>    
+			</Link>
+
+			<Link to="/earth">
+        <div className="earth"></div> 
+			</Link>
+
+      <Link to="/mars">
+        <div className="mars"></div> 
+			</Link>
+
+			<Link to="/jupyter">
+        <div className="jupyter"></div>
+			</Link>
+
+			<Link to="/saturn">
+				<div className="saturn">
+				<div className="rings"></div>
+				<div className="tops"></div>
+				</div>
+			</Link>
+
+			<Link to="/uranus">
+				<div className="uranus">
+				<div className="ringu"></div>
+				<div className="topu"></div>
+				</div>
+			</Link>
+
+			<Link to="/neptune">
+        <div className="neptune"></div>
+			</Link>
         </div>
-    </>
+    </div>
   )
 }
 

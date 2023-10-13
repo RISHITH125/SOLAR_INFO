@@ -20,7 +20,7 @@
     --dist_ur: calc(var(--dist_sa) + var(--planet_sep));
     --dist_ne: calc(var(--dist_ur) + var(--planet_sep));
 
-    --earth-days: 12s;
+    --earth-days: 10s;
 }
 
 * {margin: 0; padding: 0;}
