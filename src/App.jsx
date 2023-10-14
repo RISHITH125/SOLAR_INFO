@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import System from './system/System'
+import System from './system/system'
 import Planet from './system/Planet'
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<System />} />
+        <Route path="/sun" element={<Planet name="sun"/>}/>
         <Route path="/mercury" element={<Planet name="mercury" />} />
         <Route path="/venus" element={<Planet name="venus" />} />
         <Route path="/earth" element={<Planet name="earth" />} />
