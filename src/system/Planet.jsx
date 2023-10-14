@@ -22,6 +22,6 @@ const Planet = (props) => {
       </div>
     </>
   )
-}
+}   
 
 export default Planet

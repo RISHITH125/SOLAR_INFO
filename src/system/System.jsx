@@ -44,9 +44,15 @@ const System = () => {
     <div className='overflow-hidden'>
         <div ref={main} className={`main`} style={mainStyle}>
             <div className="sun flex items-center">
-              <h1 className={`relative font-thin text-orange-400 left-[3vw]`} style={opacityClass}>SOLAR</h1>
+              <h1 className={`relative font-thin text-white left-[3vw] info`} style={opacityClass}>SOLAR</h1>
               <h1 className={`relative text-white left-[4vw] info`} style={opacityClass}>INFO</h1>
+            
+            <Link to="/sun">
+            <div className="sun-shadow"></div>
+            </Link>
             </div>
+
+
 			
 			<Link to="/mercury">
         <div className="mercury"></div>	
