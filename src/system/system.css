@@ -1,27 +1,78 @@
+
+/* Define default variables */
 :root {
-    --size-su: 100px;
-    --size-me: 16px;
-    --size-ve: 18px;
-    --size-ea: 20px;
-    --size-ma: 16px;
-    --size-ju: 32px;
-    --size-sa: 26px;
-    --size-ur: 20px;
-    --size-ne: 20px;
+    --planet-size-multiplier: 1;
+    --planet-separation-multiplier: 1;
+  }
+  
+  /* Define variables for small screens */
+  @media (max-width: 376px) {
+    :root {
+        --merc-dist:2vw;
+        --indiv-dist:2.5vw;
+        --planet-size-multiplier: 1.2;
+        --planet-separation-multiplier:7;
+    }
+  }
+  
+  /* Define variables for medium screens */
+  @media (min-width: 376px) and (max-width: 920px) {
+    :root {
+        --merc-dist:7vw;
+        --indiv-dist:2.4vw;
+        --planet-size-multiplier: 1.5;
+        --planet-separation-multiplier: 2;
+    }
+  }
+  @media (min-width: 920px) and (max-width:1025px){
+    :root {
+        --merc-dist:10vw;
+        --indiv-dist:0.4vw;
+        --planet-size-multiplier: 0.6;
+        --planet-separation-multiplier: 0.55;
+    }
+  }
+  
+  /* Define variables for large screens */
+  @media (min-width: 1025px) {
+    :root {
+        
+        --merc-dist:10vw;
+        --indiv-dist:0.4vw;
+        --planet-size-multiplier: 0.6;
+        --planet-separation-multiplier: 0.55;
+    }
+  }
+  
+  /* Rest of your CSS code using these variables */
+  
+:root {
 
-    --planet_sep :45px;
+    --size-su: calc(9vw  * var(--planet-size-multiplier));
+    --size-me: calc(1.5vw * var(--planet-size-multiplier));
+    --size-ve: calc(1.8vw * var(--planet-size-multiplier));
+    --size-ea: calc(2vw   * var(--planet-size-multiplier));
+    --size-ma: calc(1.6vw * var(--planet-size-multiplier));
+    --size-ju: calc(3.2vw * var(--planet-size-multiplier));
+    --size-sa: calc(2.6vw * var(--planet-size-multiplier));
+    --size-ur: calc(2.0vw * var(--planet-size-multiplier));
+    --size-ne: calc(2.0vw * var(--planet-size-multiplier));
 
-    --dist_me: 80px;
-    --dist_ve: calc(var(--dist_me) + var(--planet_sep));
-    --dist_ea: calc(var(--dist_ve) + var(--planet_sep));
-    --dist_ma: calc(var(--dist_ea) + var(--planet_sep));
-    --dist_ju: calc(var(--dist_ma) + var(--planet_sep));
-    --dist_sa: calc(var(--dist_ju) + var(--planet_sep));
-    --dist_ur: calc(var(--dist_sa) + var(--planet_sep));
-    --dist_ne: calc(var(--dist_ur) + var(--planet_sep));
+    --planet_sep :calc(2.27vw);
 
-    --earth-days: 10s;
+    --dist_me: calc(var(--merc-dist) * var(--planet-separation-multiplier));
+    --dist_ve: calc(var(--dist_me) + var(--planet_sep) + var(--indiv-dist));
+    --dist_ea: calc(var(--dist_ve) + var(--planet_sep) + var(--indiv-dist));
+    --dist_ma: calc(var(--dist_ea) + var(--planet_sep) + var(--indiv-dist));
+    --dist_ju: calc(var(--dist_ma) + var(--planet_sep) + var(--indiv-dist));
+    --dist_sa: calc(var(--dist_ju) + var(--planet_sep) + var(--indiv-dist));
+    --dist_ur: calc(var(--dist_sa) + var(--planet_sep) + var(--indiv-dist));
+    --dist_ne: calc(var(--dist_ur) + var(--planet_sep) + var(--indiv-dist));
+
+    --earth-days: 5s;
 }
+
+
 
 * {margin: 0; padding: 0;}
 
@@ -29,13 +80,25 @@
     text-shadow: 0px 0px 5px goldenrod, 0px 0px 7px goldenrod, 0px 0px 10px goldenrod;
 }
 body{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    top: 50%; 
+    left: 50%;
+    overflow: hidden;
     background-image: url("textures/2k_stars_milky_way.jpg");
+    background-size:cover;
+    background-repeat: repeat;
 }
 .main{
-    display: flex;
-    justify-content:center ;
-    align-items: center;
-    position: relative;
+    /* display: flex; */
+    /* border: 10px solid white;    */
+    /* justify-content:center ; */
+    /* align-items: center; */
+    position: absolute;
+    transform: translate(-50%, -50%);
     width: 100vw;
     height: 100vh;
     size: 10rem;
@@ -44,17 +107,15 @@ body{
 }
 .sun {
     /* border: 4px solid white; */
-    position: relative;
-    /* /* top: 50%; 
-    left: 50%; */
-    top: 0vh;
-    left:4vw;
+    position: absolute;
+    top: 50%; 
+    left: 50%;
     width: var(--size-su);
     height: var(--size-su);
     border-radius: 50%;
-    /* transform: translate(-50%, -50%); */
+    transform: translate(-50%, -50%);
     background-color: white;
-    box-shadow: inset 0 0 10px orange,inset 0 0 20px orange, inset 0 0 10px orange, 0 0 20vh goldenrod, 0 0 30vh goldenrod, 0 0 100vh goldenrod;
+    box-shadow: inset 0 0 calc(0.10vw * var(--planet-size-multiplier)) orange,inset 0 0 calc(0.20vw * var(--planet-size-multiplier)) orange, inset 0 0 calc(0.10vw * var(--planet-size-multiplier)) orange, 0 0 calc(2.0vw * var(--planet-size-multiplier)) goldenrod, 0 0 calc(3.0vw * var(--planet-size-multiplier)) goldenrod, 0 0 calc(10.0vw * var(--planet-size-multiplier)) goldenrod;
     /* box-shadow: inset 0 0 10px white,inset 0 0 100px white, inset 0 0 9px white, 0 0 100px white, 0 0 1000vh white, 0 0 1000vh white;    */
     background-image: url("textures/2k_sun.jpg");
     background-size: cover;
@@ -75,9 +136,11 @@ body{
 
 
 .mercury, .venus, .earth, .mars , .jupyter, .saturn , .uranus, .neptune{
-    position: relative;
+    position: absolute;
     border-radius: 50%;
     transform: translate(-50%, -50%);
+    top: 50%; 
+    left: 50%; 
 }
 
 .mercury {
@@ -100,7 +163,7 @@ body{
     border-radius: 50%;
     width: var(--size-me);
     height: var(--size-me);
-    box-shadow: inset -5px -1px 10px 1px rgba(0, 0, 0, 0.8);
+    box-shadow: inset calc(-0.5vw * var(--planet-size-multiplier)) calc(-0.1vw * var(--planet-size-multiplier)) calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier)) rgba(0, 0, 0, 0.8);
 }
 
 
@@ -122,7 +185,7 @@ body{
     border-radius: 50%;
     width: var(--size-ve);
     height: var(--size-ve);
-    box-shadow: inset -5px -1px 10px 1px rgba(0, 0, 0, 0.9);
+    box-shadow: inset calc(-0.5vw * var(--planet-size-multiplier)) calc(-0.1vw * var(--planet-size-multiplier)) calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier)) rgba(0, 0, 0, 0.9);
 }
 
 .earth {
@@ -133,7 +196,7 @@ body{
     background-image: url("textures/2k_earth_daymap.jpg");
     background-size:cover;
     background-repeat:repeat;
-    background-position: 19px 1px;
+    background-position: calc(1.9vw * var(--planet-size-multiplier))  calc(0.1vw * var(--planet-size-multiplier));
 }
 .earth::after{
     content:'';
@@ -142,7 +205,7 @@ body{
     border-radius: 50%;
     width: var(--size-ea);
     height: var(--size-ea);
-    box-shadow: inset -5px -1px 10px 1px rgba(0, 0, 0, 0.9),0px 0px 5px blue;  
+    box-shadow: inset calc(-0.5vw * var(--planet-size-multiplier)) calc(-0.1vw * var(--planet-size-multiplier)) calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier)) rgba(0, 0, 0, 0.9),0vw 0vw calc(0.5vw * var(--planet-size-multiplier)) blue;  
 }
 
 .mars {
@@ -154,7 +217,7 @@ body{
     background-image: url("textures/2k_mars.jpg");
     background-size:cover;
     background-repeat:repeat;
-    background-position: 0px 0px;
+    background-position: 0vw 0vw;
 }
 .mars::after{
     content:'';
@@ -163,7 +226,7 @@ body{
     border-radius: 50%;
     width: var(--size-ma);
     height: var(--size-ma);
-    box-shadow: inset -5px -1px 8px 1px rgba(0, 0, 0, 0.8),0px 0px 5px black;  
+    box-shadow: inset calc(-0.5vw * var(--planet-size-multiplier)) calc(-0.1vw  * var(--planet-size-multiplier))calc(0.8vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier)) rgba(0, 0, 0, 0.8),calc(0vw * var(--planet-size-multiplier)) calc(0vw * var(--planet-size-multiplier)) calc(0.5vw * var(--planet-size-multiplier)) black;  
 }
 
 .jupyter {
@@ -174,7 +237,7 @@ body{
     background-image: url("textures/2k_jupiter.jpg");
     background-size:cover;
     background-repeat:repeat;
-    background-position: 10px 0px;
+    background-position: 1.0vw 0vw;
 }
 .jupyter::after{
     content:'';
@@ -183,12 +246,12 @@ body{
     border-radius: 50%;
     width: var(--size-ju);
     height: var(--size-ju);
-    box-shadow: inset -5px -1px 8px 4px rgba(0, 0, 0, 1),0px 0px 5px black;  
+    box-shadow: inset calc(-0.5vw * var(--planet-size-multiplier)) calc(-0.1vw * var(--planet-size-multiplier)) calc(0.8vw * var(--planet-size-multiplier)) calc(0.4vw * var(--planet-size-multiplier)) rgba(0, 0, 0, 1),0vw 0vw calc(0.5vw * var(--planet-size-multiplier)) black;  
 }
 
 .saturn {
-    max-width: 40px;
-    max-height: 28px;
+    max-width: calc(4.0vw * var(--planet-size-multiplier));
+    max-height: calc(2.8vw * var(--planet-size-multiplier));
     width: var(--size-sa);
     height: var(--size-sa);
     justify-content: center;
@@ -199,35 +262,35 @@ body{
     background-image: url("textures/2k_saturn.jpg");
     background-size:cover;
     background-repeat:repeat;
-    background-position: 10px 0px;
-    box-shadow: inset -5px -6px 7px 0.5px rgba(0, 0, 0, 0.8);
+    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.0vw * var(--planet-size-multiplier));
+    box-shadow: inset calc(-0.5vw * var(--planet-size-multiplier)) calc(-0.6vw * var(--planet-size-multiplier)) calc(0.7vw * var(--planet-size-multiplier)) calc(0.05vw * var(--planet-size-multiplier)) rgba(0, 0, 0, 0.8);
 }
 .tops
 {
     position: relative;
   width:calc(var(--size-sa)-8px);
   height:calc(var(--size-sa)/2);
-  top:-30px;
+  top:calc(-3.0vw * var(--planet-size-multiplier));
   /* height: calc(var(--size-sa)/2); */
-  border-radius:22px 22px 0px 0px;
+  border-radius:calc(2.2vw * var(--planet-size-multiplier)) calc(2.2vw * var(--planet-size-multiplier)) 0vw 0vw;
   background-color: #ffc680;
   background-image: url("textures/2k_saturn.jpg");
   background-size:cover;
   background-repeat:repeat;
-  background-position: 10px 3px;
-  box-shadow: inset -5px 2px 10px 1px rgba(0, 0, 0, 0.8);
+  background-position: 1.0vw 0.3vw;
+  box-shadow: inset calc(-0.5vw * var(--planet-size-multiplier)) calc(0.2vw * var(--planet-size-multiplier)) calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier)) rgba(0, 0, 0, 0.8);
 }
 .rings{
         rotate: 0deg;
-        border:solid 6px #2c261f;
+        border:solid calc(0.6vw * var(--planet-size-multiplier)) #2c261f;
         box-shadow: none !important;
-        width: 50px;
-        height: 30px;
+        width:  calc(5.0vw * var(--planet-size-multiplier));
+        height: calc(3.0vw * var(--planet-size-multiplier));
         /* border: solid 5px #5f5b48; */
         border-radius: 50%;
         position: relative;
-        left: -12px;
-        top: -3px;
+        left:calc(-1.2vw * var(--planet-size-multiplier));
+        top:calc( -0.3vw* var(--planet-size-multiplier)) ;
         transform: rotate3d(1, 0, 0,60deg); 
 }
 .uranus {
@@ -238,19 +301,19 @@ body{
     background-image: url("textures/2k_uranus.jpg");
     background-size:cover;
     background-repeat:repeat;
-    background-position: 10px 0px;
+    background-position: calc(1.0vw * var(--planet-size-multiplier)) 0vw;
 }
 .ringu{
     rotate: 0deg;
-    border:solid 3px #ACE5EE;
+    border:solid calc(0.3vw * var(--planet-size-multiplier)) #ACE5EE;
     box-shadow: none !important;
-    width: 33px;
-    height: 30px;
+    width:calc(3.3vw * var(--planet-size-multiplier)) ;
+    height:calc(3.0vw * var(--planet-size-multiplier)) ;
     /* border: solid 5px #5f5b48; */
     border-radius: 50%;
     position: relative;
-    left: -6.5px;
-    top: -5px;
+    left:calc(-0.65vw * var(--planet-size-multiplier));
+    top:calc(-0.5vw * var(--planet-size-multiplier));
     transform: rotate3d(1, 0, 0,65deg); 
 }
 .topu
@@ -258,16 +321,16 @@ body{
         position: relative;
         width:calc(var(--size-ur) -4px);
         height:calc(var(--size-ur)/2 -4px);
-        top:-30px;
+        top:calc(-3.0vw * var(--planet-size-multiplier));
     
         /* height: calc(var(--size-sa)/2); */
-        border-radius:100px 100px 0px 0px;
+        border-radius:calc(10.0vw * var(--planet-size-multiplier)) calc(10.0vw * var(--planet-size-multiplier)) 0vw 0vw;
         background-color: #5ccee2;
         background-image: url("textures/2k_uranus.jpg");
         background-size:cover;
         background-repeat:repeat;
-        background-position:2px 12px;
-        box-shadow: inset -5px -8px 8px 1px rgba(0, 0, 0, 0.7);
+        background-position:calc(0.2vw * var(--planet-size-multiplier)) calc(1.2vw * var(--planet-size-multiplier));
+        box-shadow: inset calc(-0.5vw * var(--planet-size-multiplier)) calc(-0.8vw * var(--planet-size-multiplier)) calc(0.8vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier)) rgba(0, 0, 0, 0.7);
 }
 
 .neptune {
@@ -287,17 +350,21 @@ body{
     border-radius: 50%;
     width: var(--size-ne);
     height: var(--size-ne);
-    box-shadow: inset -5px -1px 10px 3px rgba(0, 0, 0, 0.9); 
+    box-shadow: inset calc(-0.5vw * var(--planet-size-multiplier)) calc(-0.1vw * var(--planet-size-multiplier)) calc(1.0vw * var(--planet-size-multiplier)) calc(0.3vw * var(--planet-size-multiplier)) rgba(0, 0, 0, 0.9); 
 }
 @keyframes ROTATE-me {
-    0% { 
+    0% {
+ 
         transform: rotate(0deg)  
               translateX(var(--dist_me)) rotate(-40deg); 
+        
     } 
 
-    100% { 
+    100% {
+        transform: translate(-50%, -50%); 
         transform: rotate(360deg)  
-              translateX(var(--dist_me)) rotate(-40deg); 
+              translateX(var(--dist_me)) rotate(-40deg);
+        
     } 
 } 
 
@@ -351,7 +418,7 @@ body{
 @keyframes ROTATE-sa {
     0% { 
         transform: rotate(225deg)  
-              translateY(var(--dist_sa))  rotate(0deg); 
+              translateY(var(--dist_sa))  rotate(0deg) ; 
     } 
 
     100% { 
