@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import System from './system/system'
+import System from './system/System'
 import Planet from './system/Planet'
 
 function App() {
