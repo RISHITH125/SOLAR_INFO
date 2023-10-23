@@ -8,10 +8,10 @@
   /* Define variables for small screens */
   @media (max-width: 376px) {
     :root {
-        --merc-dist:1vw;
-        --indiv-dist:2.5vw;
-        --planet-size-multiplier: 1.2;
-        --planet-separation-multiplier:7;
+        --merc-dist:3.5vw;
+        --indiv-dist:4.5vw;
+        --planet-size-multiplier: 1.8;
+        --planet-separation-multiplier:4;
     }
   }
   
@@ -19,9 +19,9 @@
   @media (min-width: 376px) and (max-width: 920px) {
     :root {
         --merc-dist:7vw;
-        --indiv-dist:2.4vw;
+        --indiv-dist:2.6vw;
         --planet-size-multiplier: 1.3;
-        --planet-separation-multiplier: 2.3;
+        --planet-separation-multiplier: 2.5;
     }
   }
   @media (min-width: 920px) and (max-width:1025px){
@@ -43,7 +43,16 @@
         --planet-separation-multiplier: 0.4;
     }
   }
-  
+
+    @media (min-height: 1365px ) {
+    :root {
+        
+        --merc-dist:5vw;
+        --indiv-dist:2.5vw;
+        --planet-size-multiplier: 1.45;
+        --planet-separation-multiplier:4;
+    }
+  }
   /* Rest of your CSS code using these variables */
   
 :root {
@@ -69,7 +78,7 @@
     --dist_ur: calc(var(--dist_sa) + var(--planet_sep) + var(--indiv-dist));
     --dist_ne: calc(var(--dist_ur) + var(--planet_sep) + var(--indiv-dist));
 
-    --earth-days: 15s;
+    --earth-days: 5s;
 }
 
 
@@ -233,7 +242,7 @@ body{
     background-image: url("textures/2k_earth_daymap.jpg");
     background-size:cover;
     background-repeat:repeat;
-    animation: earthrot calc(var(--earth-days) / 365) infinite linear;
+    animation: earthrot calc(var(--earth-days))  infinite linear;
     background-position: calc(1.9vw * var(--planet-size-multiplier))  calc(0.1vw * var(--planet-size-multiplier));
 }
 @keyframes earthrot {
@@ -396,7 +405,7 @@ body{
         box-shadow: inset calc(-0.5vw * var(--planet-size-multiplier)) calc(-0.8vw * var(--planet-size-multiplier)) calc(0.8vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier)) rgba(0, 0, 0, 0.7);
 }
 .uranus-hb{
-    animation: ROTATE-urhb calc((10756/365)*var(--earth-days)) infinite linear;
+    animation: ROTATE-urhb calc((30687/365)*var(--earth-days)) infinite linear;
 }
 
 
