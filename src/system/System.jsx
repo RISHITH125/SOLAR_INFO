@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './system.css'
 import { useRef } from 'react'
+import {Mercury,Venus,Earth,Mars,Jupiter,Saturn,Uranus,Neptune,Sun} from './Heaven/hbods'
 import { Link } from 'react-router-dom'
 
 
@@ -43,75 +44,23 @@ const System = () => {
   return ( 
     <div className=''>
         <div ref={main} className={`main flex justify-center items-center`} style={mainStyle}>
-            <div className="sun flex absolute items-center">
-              <h1 className={`relative font-thin text-white left-[3vw] info`} style={opacityClass}>SOLAR</h1>
-              <h1 className={`relative text-white left-[4vw] info`} style={opacityClass}>INFO</h1>
-              <Link to="/sun">
-              <div className="sun-shadow"></div>
-              </Link>
-            </div>
+        <div className="sun flex absolute items-center">
+        <h1 className={`relative font-thin text-white left-[3vw] info`} style={opacityClass}>SOLAR</h1>
+        <h1 className={`relative text-white left-[4vw] info`} style={opacityClass}>INFO</h1>
+        <Link to="/sun">
+            <div className="sun-shadow" />
+        </Link>
+    </div>           
             <div className='absolute'>
-                    
-                    <div className='mercury-hb'>
-                      <Link to="/mercury">
-                        <div className="mercury"></div>	
-                      </Link>
-                    </div>
-
-                    <div className='venus-hb'>
-                      <Link to="/venus">
-                        <div className="venus"></div>    
-                      </Link>
-                    </div>
-                      
-                    <div className="earth-hb">
-                      <Link to="/earth">
-                        <div className="earth"></div> 
-                      </Link>
-                    </div>
-
-
-                    <div className="mars-hb">
-                      <Link to="/mars">
-                        <div className="mars"></div> 
-                      </Link>
-                    </div>
-                         
-
-                    <div className="jupyter-hb">
-                      <Link to="/jupyter">
-                        <div className="jupyter"></div>
-                      </Link>
-                    </div>  
-
-                    <div className="saturn-hb">
-                      <Link to="/saturn">
-                        <div className="saturn">
-                        <div className="rings"></div>
-                        <div className="tops"></div>
-                        </div>
-                      </Link>
-                    </div>  
-                       
-
-                    <div className="uranus-hb">
-                      <Link to="/uranus">
-                        <div className="uranus">
-                        <div className="ringu"></div>
-                        <div className="topu"></div>
-                        </div>
-                      </Link>
-                    </div>
- 
-
-                    <div className="neptune-hb">
-                      <Link to="/neptune">
-                        <div className="neptune"></div>
-                      </Link>
-                    </div>
-                      
+                    <Mercury/>
+                    <Venus/>
+                    <Earth/>
+                    <Mars/>
+                    <Jupiter/>  
+                    <Saturn/>
+                    <Uranus/>   
+                    <Neptune/>    
             </div>
-            
         </div>
     </div>
   )
