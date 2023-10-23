@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 
 const System = () => {
   const main = useRef(null); // main is like a pointer | main.current = *main
-  const [scaleFactor, setScaleFactor] = useState(1000);
-  const [translateFactor, setTranslateFactor] = useState(-2);
+  const [scaleFactor, setScaleFactor] = useState(1200);
+  const [translateFactor, setTranslateFactor] = useState(-3);
   const [opacity, setOpacity] = useState(1);
 
   let mainStyle = {
@@ -25,16 +25,16 @@ const System = () => {
           setScaleFactor((current) => {
             console.log(current)
             if (current < 100) return current;
-            setTranslateFactor((c) => c + 0.01);
-            setOpacity(o => o - 0.01)
-            return current - 10;
+            setTranslateFactor((c) => c + 0.03);
+            setOpacity(o => o - 0.02)
+            return current - 20;
           })
         } else {
           setScaleFactor((current) => {
-            if (current < 100 || current > 1100) return current;
-            setTranslateFactor((c) => c - 0.01);
-            setOpacity(o => o + 0.01)
-            return current + 10;
+            if (current < 100 || current > 1200) return current;
+            setTranslateFactor((c) => c - 0.03);
+            setOpacity(o => o + 0.02)
+            return current + 20;
           })
           
         }
