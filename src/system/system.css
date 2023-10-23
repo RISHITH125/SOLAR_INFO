@@ -20,8 +20,8 @@
     :root {
         --merc-dist:7vw;
         --indiv-dist:2.4vw;
-        --planet-size-multiplier: 1.5;
-        --planet-separation-multiplier: 2;
+        --planet-size-multiplier: 1.3;
+        --planet-separation-multiplier: 2.3;
     }
   }
   @media (min-width: 920px) and (max-width:1025px){
@@ -29,7 +29,7 @@
         --merc-dist:10vw;
         --indiv-dist:0.4vw;
         --planet-size-multiplier: 0.6;
-        --planet-separation-multiplier: 0.55;
+        --planet-separation-multiplier: 0.6;
     }
   }
   
@@ -37,7 +37,7 @@
   @media (min-width: 1025px) {
     :root {
         
-        --merc-dist:10vw;
+        --merc-dist:14vw;
         --indiv-dist:0.4vw;
         --planet-size-multiplier: 0.5;
         --planet-separation-multiplier: 0.4;
@@ -49,14 +49,14 @@
 :root {
 
     --size-su: calc(9vw  * var(--planet-size-multiplier));
-    --size-me: calc(1.5vw * var(--planet-size-multiplier));
-    --size-ve: calc(1.8vw * var(--planet-size-multiplier));
-    --size-ea: calc(2vw   * var(--planet-size-multiplier));
-    --size-ma: calc(1.6vw * var(--planet-size-multiplier));
-    --size-ju: calc(3.2vw * var(--planet-size-multiplier));
-    --size-sa: calc(2.6vw * var(--planet-size-multiplier));
-    --size-ur: calc(2.0vw * var(--planet-size-multiplier));
-    --size-ne: calc(2.0vw * var(--planet-size-multiplier));
+    --size-me: calc(1.8vw * var(--planet-size-multiplier));
+    --size-ve: calc(2vw * var(--planet-size-multiplier));
+    --size-ea: calc(2.2vw   * var(--planet-size-multiplier));
+    --size-ma: calc(1.7vw * var(--planet-size-multiplier));
+    --size-ju: calc(3.4vw * var(--planet-size-multiplier));
+    --size-sa: calc(2.8vw * var(--planet-size-multiplier));
+    --size-ur: calc(2.3vw * var(--planet-size-multiplier));
+    --size-ne: calc(2.4vw * var(--planet-size-multiplier));
 
     --planet_sep :calc(2.27vw);
 
@@ -69,7 +69,7 @@
     --dist_ur: calc(var(--dist_sa) + var(--planet_sep) + var(--indiv-dist));
     --dist_ne: calc(var(--dist_ur) + var(--planet_sep) + var(--indiv-dist));
 
-    --earth-days: 5s;
+    --earth-days: 15s;
 }
 
 
@@ -115,12 +115,32 @@ body{
     border-radius: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    box-shadow: inset 0 0 calc(0.10vw * var(--planet-size-multiplier)) orange,inset 0 0 calc(0.20vw * var(--planet-size-multiplier)) orange, inset 0 0 calc(0.10vw * var(--planet-size-multiplier)) orange, 0 0 calc(2.0vw * var(--planet-size-multiplier)) goldenrod, 0 0 calc(3.0vw * var(--planet-size-multiplier)) goldenrod, 0 0 calc(10.0vw * var(--planet-size-multiplier)) goldenrod;
+    box-shadow: inset 0 0 calc(0.10vw * var(--planet-size-multiplier)) orange,
+                inset 0 0 calc(0.20vw * var(--planet-size-multiplier)) orange, 
+                inset 0 0 calc(0.30vw * var(--planet-size-multiplier)) orange,
+                0 0 calc(2.0vw * var(--planet-size-multiplier)) goldenrod, 
+                0 0 calc(3.0vw * var(--planet-size-multiplier)) goldenrod, 
+                0 0 calc(10.0vw * var(--planet-size-multiplier)) goldenrod, 
+                0 0 calc(15.0vw * var(--planet-size-multiplier)) goldenrod, 
+                0 0 calc(20.0vw * var(--planet-size-multiplier)) goldenrod, 
+                0 0 calc(25.0vw * var(--planet-size-multiplier)) goldenrod, 
+                0 0 calc(30.0vw * var(--planet-size-multiplier)) goldenrod;
     /* box-shadow: inset 0 0 10px white,inset 0 0 100px white, inset 0 0 9px white, 0 0 100px white, 0 0 1000vh white, 0 0 1000vh white;    */
     background-image: url("textures/2k_sun.jpg");
     background-size: cover;
     background-repeat:repeat;
     background-position: center; 
+    animation: sunanime 500s infinite  linear;
+}
+@keyframes sunanime {
+    0% {
+        background-position: 1px 1;
+    }
+    100%{
+        background-position: 2049px 1025px;
+    }
+
+    
 }
 .sun-shadow{
     /* border: 4px solid white; */
@@ -213,7 +233,17 @@ body{
     background-image: url("textures/2k_earth_daymap.jpg");
     background-size:cover;
     background-repeat:repeat;
+    animation: earthrot calc(var(--earth-days) / 365) infinite linear;
     background-position: calc(1.9vw * var(--planet-size-multiplier))  calc(0.1vw * var(--planet-size-multiplier));
+}
+@keyframes earthrot {
+    0%{
+        background-position: calc(1.0vw * var(--planet-size-multiplier))  calc(0.1vw * var(--planet-size-multiplier));
+    }
+    100%{
+        background-position: calc(204.9vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+    }
+    
 }
 .earth::after{
     content:'';
