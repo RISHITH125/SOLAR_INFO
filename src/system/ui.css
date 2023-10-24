@@ -1,0 +1,8 @@
+.Sample{
+    z-index: 10;
+    position: relative;
+    max-width:30vw;
+    text-align: left;
+    top:0vh;
+    left:0vw;
+}
