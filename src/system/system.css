@@ -16,7 +16,7 @@
   }
   
   /* Define variables for medium screens */
-  @media (min-width: 376px) and (max-width: 920px) {
+  @media (min-width: 376px) and (max-width: 600px) {
     :root {
         --merc-dist:7vw;
         --indiv-dist:2.6vw;
@@ -24,7 +24,7 @@
         --planet-separation-multiplier: 2.5;
     }
   }
-  @media (min-width: 920px) and (max-width:1025px){
+  @media (min-width: 600px) and (max-width:923px){
     :root {
         --merc-dist:10vw;
         --indiv-dist:0.4vw;
@@ -33,14 +33,23 @@
     }
   }
   
-  /* Define variables for large screens */
-  @media (min-width: 1025px)  {
+
+  @media (min-width: 600px) and (max-width :900px)  {
     :root {
         
-        --merc-dist:14vw;
-        --indiv-dist:0.4vw;
-        --planet-size-multiplier: 0.5;
-        --planet-separation-multiplier: 0.4;
+        --merc-dist:9vw;
+        --indiv-dist:3vw;
+        --planet-size-multiplier: 1.3;
+        --planet-separation-multiplier:1.7;
+    }
+  }
+  @media (min-width: 800px){
+    :root {
+        
+        --merc-dist:16vw;
+        --indiv-dist:0.7vw;
+        --planet-size-multiplier: 0.7;
+        --planet-separation-multiplier: 0.5;
     }
   }
 
@@ -48,7 +57,7 @@
     :root {
         
         --merc-dist:5vw;
-        --indiv-dist:2.5vw;
+        --indiv-dist:3vw;
         --planet-size-multiplier: 1.45;
         --planet-separation-multiplier:4;
     }
@@ -78,7 +87,9 @@
     --dist_ur: calc(var(--dist_sa) + var(--planet_sep) + var(--indiv-dist));
     --dist_ne: calc(var(--dist_ur) + var(--planet_sep) + var(--indiv-dist));
 
-    --earth-days: 5s;
+    --earth-days: 10s;
+
+    --orbit-constant: calc( var(--planet-size-multiplier) * 2vw);
 }
 
 
@@ -255,7 +266,7 @@ body::before {
     background-image: url("textures/2k_earth_daymap.jpg");
     background-size:cover;
     background-repeat:repeat;
-    animation: earthrot calc(var(--earth-days))  infinite linear;
+    animation: earthrot calc(var(--earth-days) / 365)  infinite linear;
     background-position: calc(1.9vw * var(--planet-size-multiplier))  calc(0.1vw * var(--planet-size-multiplier));
 }
 @keyframes earthrot {
@@ -397,8 +408,8 @@ body::before {
     /* border: solid 5px #5f5b48; */
     border-radius: 50%;
     position: relative;
-    left:calc(-0.65vw * var(--planet-size-multiplier));
-    top:calc(-0.5vw * var(--planet-size-multiplier));
+    left:calc(-0.5vw * var(--planet-size-multiplier));
+    top:calc(-0.4vw * var(--planet-size-multiplier));
     transform: rotate3d(1, 0, 0,65deg); 
 }
 .topu
@@ -559,4 +570,54 @@ body::before {
         translateY(-50%);
     } 
 } 
+.orbit {
+    z-index: -10;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border: 0.2vw solid rgba(255, 255, 255, 0.078);
+    border-radius: 50%;
+    transition: border-color 0.3;
+    /* display: ; */
+}
+
+.orbit-me{
+    width: calc(2 * var(--dist_me) - var(--orbit-constant));
+    height: calc(2 * var(--dist_me) - var(--orbit-constant));
+  }
+.orbit-ve{
+    width: calc(2 * var(--dist_ve) - var(--orbit-constant));
+    height: calc(2 * var(--dist_ve) - var(--orbit-constant));
+  }
+  
+  .orbit-ea{
+    width: calc(2 * var(--dist_ea) - var(--orbit-constant));
+    height: calc(2 * var(--dist_ea) - var(--orbit-constant));
+  }
+  
+  .orbit-ma{
+    width: calc(2 * var(--dist_ma) - var(--orbit-constant));
+    height: calc(2 * var(--dist_ma) - var(--orbit-constant));
+  }
+  
+  .orbit-ju{
+    width: calc(2 * var(--dist_ju) - var(--orbit-constant));
+    height: calc(2 * var(--dist_ju) - var(--orbit-constant));
+  }
+  
+  .orbit-sa{
+    width: calc(2 * var(--dist_sa) - var(--orbit-constant));
+    height: calc(2 * var(--dist_sa) - var(--orbit-constant));
+  }
+  
+  .orbit-ur{
+    width: calc(2 * var(--dist_ur) - var(--orbit-constant));
+    height: calc(2 * var(--dist_ur) - var(--orbit-constant));
+  }
+  
+  .orbit-ne {
+    width: calc(2 * var(--dist_ne) - var(--orbit-constant));
+    height: calc(2 * var(--dist_ne) - var(--orbit-constant));
+  }
 

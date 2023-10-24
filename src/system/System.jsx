@@ -3,7 +3,7 @@ import './system.css'
 import { useRef } from 'react'
 import {Mercury,Venus,Earth,Mars,Jupiter,Saturn,Uranus,Neptune,Sun} from './Heaven/hbods'
 import { Link } from 'react-router-dom'
-
+import Ui from './UserInterface'
 
 const System = () => {
   const main = useRef(null); // main is like a pointer | main.current = *main
@@ -23,7 +23,6 @@ const System = () => {
     main.current.addEventListener('wheel', (e)=>{
         if (e.deltaY > 0) {
           setScaleFactor((current) => {
-            console.log(current)
             if (current < 100) return current;
             setTranslateFactor((c) => c + 0.03);
             setOpacity(o => o - 0.02)
@@ -45,8 +44,8 @@ const System = () => {
     <div className=''>
         <div ref={main} className={`main flex justify-center items-center`} style={mainStyle}>
         <div className="sun flex absolute items-center">
-        <h1 className={`relative font-thin text-white left-[3vw] info`} style={opacityClass}>SOLAR</h1>
-        <h1 className={`relative text-white left-[4vw] info`} style={opacityClass}>INFO</h1>
+        <h1 className={`relative font-thin text-white left-[4vw] info`} style={opacityClass}>SOLAR</h1>
+        <h1 className={`relative text-white left-[4.5vw] info`} style={opacityClass}>INFO</h1>
         <Link to="/sun">
             <div className="sun-shadow" />
         </Link>
@@ -61,7 +60,9 @@ const System = () => {
                     <Uranus/>   
                     <Neptune/>    
             </div>
+            
         </div>
+        {scaleFactor <=100 && <Ui/>}
     </div>
   )
 }
