@@ -87,7 +87,7 @@
     --dist_ur: calc(var(--dist_sa) + var(--planet_sep) + var(--indiv-dist));
     --dist_ne: calc(var(--dist_ur) + var(--planet_sep) + var(--indiv-dist));
 
-    --earth-days: 10s;
+    --earth-days: 1000000000s;
 
     --orbit-constant: calc( var(--planet-size-multiplier) * 2vw);
 }

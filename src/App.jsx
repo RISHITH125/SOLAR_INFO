@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import System from './system/System'
-import Planet from './system/Planet'
+import Planet from './system/Planets'
 
 function App() {
 
