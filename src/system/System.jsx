@@ -6,10 +6,43 @@ import { Link } from 'react-router-dom'
 import Ui from './UserInterface'
 
 const System = () => {
-  const main = useRef(null); // main is like a pointer | main.current = *main
-  const [scaleFactor, setScaleFactor] = useState(1200);
-  const [translateFactor, setTranslateFactor] = useState(-3);
-  const [opacity, setOpacity] = useState(1);
+  const main = useRef(null);
+  const [scaleFactor, setScaleFactor] = useState(getInitialScaleFactor());
+  const [translateFactor, setTranslateFactor] = useState(getInitialTranslateFactor());
+  const [opacity, setOpacity] = useState(getInitialOpacity());
+
+  function getInitialScaleFactor() {
+    const viewportWidth = window.innerWidth;
+    if (viewportWidth >= 800) {
+      return 1200
+    } else{
+      return 800
+    } 
+  }
+  function getInitialTranslateFactor() {
+    const viewportWidth = window.innerWidth;
+    if (viewportWidth >= 800) 
+    {
+      return -3
+    } 
+    else
+    {
+      return 0
+    }
+  }
+
+  function getInitialOpacity() {
+    const viewportWidth = window.innerWidth;
+    if (viewportWidth >= 800) 
+    {
+      return 1
+    } 
+    else
+    {
+      return 0
+    }
+
+  }
 
   let mainStyle = {
     transform: `scale(${scaleFactor}%) translateX(${translateFactor}%)`
@@ -30,7 +63,7 @@ const System = () => {
           })
         } else {
           setScaleFactor((current) => {
-            if (current < 100 || current > 1200) return current;
+            if (current < 100 || current >= getInitialScaleFactor()) return current;
             setTranslateFactor((c) => c - 0.03);
             setOpacity(o => o + 0.02)
             return current + 20;
