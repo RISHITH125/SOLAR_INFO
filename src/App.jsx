@@ -1,15 +1,16 @@
 
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import System from './system/System'
 import Planet from './system/Planets'
-import { createMemoryHistory } from 'history';
-const history = createMemoryHistory();
+
 
 function App() {
 
+const visited =0
   return (
     <>
-    <BrowserRouter history={history}>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<System />} />
         <Route path="/sun" element={<Planet name="sun"/>}/>

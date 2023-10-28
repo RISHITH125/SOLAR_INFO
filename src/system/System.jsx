@@ -16,7 +16,7 @@ const System = () => {
     if (viewportWidth >= 800) {
       return 1200
     } else{
-      return 800
+      return 600
     } 
   }
   function getInitialTranslateFactor() {
@@ -39,7 +39,7 @@ const System = () => {
     } 
     else
     {
-      return 0
+      return 1
     }
 
   }
@@ -73,12 +73,18 @@ const System = () => {
     })
   }, [main])
 
+  const viewportWidth = window.innerWidth;
+  const leftvalue=viewportWidth >= 800?'3vw':'0.2vw'
+  const leftvaluesep=viewportWidth >= 800?'3.5vw':'6.5vw'
+  // const leftvalue='3vw'
+
+
   return ( 
     <div className=''>
         <div ref={main} className={`main flex justify-center items-center`} style={mainStyle}>
         <div className="sun flex absolute items-center">
-        <h1 className={`relative font-thin text-white left-[4vw] info`} style={opacityClass}>SOLAR</h1>
-        <h1 className={`relative text-white left-[4.5vw] info`} style={opacityClass}>INFO</h1>
+        <h1 className={`absolute font-thin text-white left-[${leftvalue}] info`} style={opacityClass}>SOLAR</h1>
+        <h1 className={`absolute text-white left-[${parseFloat(leftvalue) + parseFloat(leftvaluesep)}vw] info`} style={opacityClass}>INFO</h1>
         <Link to="/sun">
             <div className="sun-shadow" />
         </Link>
