@@ -26,7 +26,11 @@ function Ui() {
             <div className={`Sample2 cursor-pointer`}></div>
           </div>
         ) : (maxwidth > 800) ? (
-          <div className='absolute cursor-pointer font-bold text-xl italic top-5 left-7 inter'>INTERACT</div>
+          <div className='absolute cursor-pointer font-bold text-xl italic top-5 left-7 Menu'>
+            <div className={`Menu_line1`}></div>
+            <div className={`Menu_line2`}></div>
+            <div className={`Menu_line3`}></div>
+          </div>
         ) : (
           <div className={`cursor-pointer Sample3`}></div>
         )}
