@@ -23,7 +23,7 @@ const System = () => {
     const viewportWidth = window.innerWidth;
     if (viewportWidth >= 800) 
     {
-      return -3
+      return -3.3;
     } 
     else
     {
