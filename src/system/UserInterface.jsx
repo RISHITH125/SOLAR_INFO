@@ -23,12 +23,18 @@ function Ui() {
       <p className={`interact text-white font-bold from-neutral-50`} onClick={handleClick}>
         {isclicked ? (
           <div className={`interact-tab flex`}>
-            <div className={`Sample2 cursor-pointer`}></div>
+            <div className={`Close cursor-pointer`}></div>
+            <div className={`Topdiv`}></div>
+            <div className={`Botdiv`}></div>
           </div>
         ) : (maxwidth > 800) ? (
-          <div className='absolute cursor-pointer font-bold text-xl italic top-5 left-7 inter'>INTERACT</div>
+          <div className='absolute cursor-pointer font-bold text-xl italic top-5 left-7 Menu'>
+            <div className={`Menu_line1`}></div>
+            <div className={`Menu_line2`}></div>
+            <div className={`Menu_line3`}></div>
+          </div>
         ) : (
-          <div className={`cursor-pointer Sample3`}></div>
+          <div className={`cursor-pointer Open`}></div>
         )}
       </p>
     </div>
