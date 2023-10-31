@@ -75,7 +75,7 @@ const System = () => {
 
   const viewportWidth = window.innerWidth;
   const leftvalue=viewportWidth >= 800?'3vw':'0.2vw'
-  const leftvaluesep=viewportWidth >= 800?'3.5vw':'6.5vw'
+  const leftvaluesep=viewportWidth >= 800? '6.5vw':'6.5vw'
   // const leftvalue='3vw'
 
 
@@ -84,7 +84,7 @@ const System = () => {
         <div ref={main} className={`main flex justify-center items-center`} style={mainStyle}>
         <div className="sun flex absolute items-center">
         <h1 className={`absolute font-thin text-white left-[${leftvalue}] info`} style={opacityClass}>SOLAR</h1>
-        <h1 className={`absolute text-white left-[${parseFloat(leftvalue) + parseFloat(leftvaluesep)}vw] info`} style={opacityClass}>INFO</h1>
+        <h1 className={`absolute text-white left-[${leftvaluesep}] info`} style={opacityClass}>INFO</h1>
         <Link to="/sun">
             <div className="sun-shadow" />
         </Link>

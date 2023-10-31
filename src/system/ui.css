@@ -23,7 +23,7 @@
         left:-3px;
         background-color: rgba(0, 0, 0, 0.8); /* 0% opacity */
       }
-      .Sample2{
+      .Close{
         transform: translate(-50%,-50%);
 
         background-image: url(../assets/lesser-than-icon.svg);
@@ -38,9 +38,9 @@
         z-index: 10;
         position: relative;
         top:50%;
-        left:38px;
+        left:37.5px;
       }
-      .Sample3{
+      .Open{
         position: absolute;
         transform: translate(-50%,-50%);
         background-image: url(../assets/greater-than-icon.svg);
@@ -70,7 +70,7 @@
         width: 60vh;
         background-color: rgba(0, 0, 0, 1); 
       }
-      .Sample2{
+      .Close{
         background-image: url(../assets/settings-svgrepo-com.svg);
 
         background-repeat: no-repeat;
@@ -83,9 +83,9 @@
         position: relative;
         top:1.5vh;
         left:-1vh;
-        transition: box-shadow  0.1s;
+        /* transition: box-shadow  0.1s; */
     }  
-    .Sample2:hover{
+    .Close:hover{
       box-shadow: 0px 0px 3px red,0px 0px 4px red ;
     }
     .Menu,
@@ -101,7 +101,7 @@
       height: 50px;
       border-radius: 15px;
       border: 2px solid white;
-      transition: box-shadow 0.1s; 
+      transition: box-shadow 0.001s; 
     }
     
     .Menu_line1,
