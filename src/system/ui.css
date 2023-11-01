@@ -1,15 +1,22 @@
-  .Sample{
-      background-repeat: no-repeat;
-      background-size: 36px 36px;
-      background-position: 50% 50%;
-      width: 40px;
-      height: 40px;
-      border-radius: 30%;
-      z-index: 10;
-      position: relative;
-  }
+*{
+  z-index: 100;
+}
 
     @media (min-width: 100px) and (max-width: 800px) {
+
+      .UserInter{
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: flex-end;
+      }
+      .about{
+        position: relative;
+        align-self: flex-end;
+        padding: 0.5vw;
+      }
+    
+
       .interact-tab {
         display: flex;
         justify-content: flex-end ;
@@ -59,6 +66,20 @@
     }
 
     @media (min-width: 800px) {
+      .UserInter{
+
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: flex-end;
+      }
+      .about{
+        position: relative;
+        align-self: flex-end;
+        padding: 0.5vw;
+      }
+    
+      
       .interact-tab {
         display: flex;
         justify-content: flex-end;
@@ -125,5 +146,4 @@
     
 
   }
-
 
