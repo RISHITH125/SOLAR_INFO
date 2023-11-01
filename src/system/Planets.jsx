@@ -4,7 +4,7 @@ import './PreLoader.css'
 const PreLoader = () => {
   return (
     <>
-      <div className='w-[90vw] h-[100vh] flex justify-center items-center'>
+      <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
         <div className='loadingAnimation w-5 h-5 bg-white rounded-full'></div>
       </div>
     </>
