@@ -86,12 +86,19 @@ const System = () => {
                 <h1 className={`absolute font-thin text-white left-[${leftvalue}] info`} style={opacityClass}>SOLAR</h1>
                 <h1 className={`absolute text-white left-[${leftvaluesep}] info`} style={opacityClass}>INFO</h1>
                 {/* <Sun/> */}
+                {/* <Link to="/sun">
+                  <div className="sun-shadow" />
+                </Link>  */}
+
             </div> 
 
-            <Link to="/sun">
-              <div className="sun-shadow" />
-            </Link>          
+                   
             <div className='absolute'>
+
+                <Link to="/sun">
+                  <div className="sun-shadow" />
+                </Link> 
+
                 <Mercury/>
                 <Venus/>
                 <Earth/>
