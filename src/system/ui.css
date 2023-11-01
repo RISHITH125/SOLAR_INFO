@@ -97,10 +97,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 15px;
-      border: 2px solid white;
+      width: 35px;
+      height: 35px;
+      border-radius: 7px;
+      border: 2px solid grey;
       transition: box-shadow 0.001s; 
     }
     
@@ -108,17 +108,18 @@
     .Menu_line2,
     .Menu_line3 {
       position: relative;
-      background-color: white;
-      width: 30px;
-      height: 1px;
-      border-radius: 2px;
-      margin: 4px;
+      background-color: grey;
+      width: 17px;
+      height: 2px;
+      border-radius: 1px;
+      margin: 2px;
     }
     
     .Menu:hover,
     .Menu:hover .Menu_line1,
     .Menu:hover .Menu_line2,
     .Menu:hover .Menu_line3 {
+      border: 2px solid rgb(168, 168, 168);
       box-shadow: 0px 0px 4px orange, 0px 0px 5px orange, 0px 0px 6px orange, 0px 0px 7px orange;
     }
     
