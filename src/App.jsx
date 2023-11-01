@@ -3,7 +3,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import System from './system/System'
 import Planet from './system/Planets'
-
+import About from './system/About'
 
 function App() {
 
@@ -22,6 +22,7 @@ const visited =0
         <Route path="/saturn" element={<Planet name="saturn" />} />
         <Route path="/uranus" element={<Planet name="uranus" />} />
         <Route path="/neptune" element={<Planet name="neptune" />} />
+        <Route path="/About" element={<About/>}/>
       </Routes>
     </BrowserRouter>
     </>

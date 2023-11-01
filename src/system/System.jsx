@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './system.css'
 import { useRef } from 'react'
-import {Mercury,Venus,Earth,Mars,Jupiter,Saturn,Uranus,Neptune,Sun} from './Heaven/hbods'
+import {Mercury,Venus,Earth,Mars,Jupiter,Saturn,Uranus,Neptune} from './Heaven/hbods'
 import { Link } from 'react-router-dom'
 import Ui from './UserInterface'
 
@@ -82,26 +82,29 @@ const System = () => {
   return ( 
     <div className=''>
         <div ref={main} className={`main flex justify-center items-center`} style={mainStyle}>
-        <div className="sun flex absolute items-center">
-        <h1 className={`absolute font-thin text-white left-[${leftvalue}] info`} style={opacityClass}>SOLAR</h1>
-        <h1 className={`absolute text-white left-[${leftvaluesep}] info`} style={opacityClass}>INFO</h1>
-        <Link to="/sun">
-            <div className="sun-shadow" />
-        </Link>
-    </div>           
+            <div className="sun flex absolute items-center">
+                <h1 className={`absolute font-thin text-white left-[${leftvalue}] info`} style={opacityClass}>SOLAR</h1>
+                <h1 className={`absolute text-white left-[${leftvaluesep}] info`} style={opacityClass}>INFO</h1>
+                {/* <Sun/> */}
+            </div> 
+
+            <Link to="/sun">
+              <div className="sun-shadow" />
+            </Link>          
             <div className='absolute'>
-                    <Mercury/>
-                    <Venus/>
-                    <Earth/>
-                    <Mars/>
-                    <Jupiter/>  
-                    <Saturn/>
-                    <Uranus/>   
-                    <Neptune/>    
+                <Mercury/>
+                <Venus/>
+                <Earth/>
+                <Mars/>
+                <Jupiter/>  
+                <Saturn/>
+                <Uranus/>   
+                <Neptune/>    
             </div>
             
         </div>
-        {scaleFactor <=100 && <Ui/>}
+        {scaleFactor <=100 &&  <div className='UI'><Ui/></div>}
+      
     </div>
   )
 }
