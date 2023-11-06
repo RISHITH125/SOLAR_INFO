@@ -1,4 +1,5 @@
 import Profile from "./profilessss/Profile";
+import { rahul } from '../assets'
 
 export default function About() {
   const gradientStyles = [
@@ -14,9 +15,9 @@ export default function About() {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit voluptatibus quia animi eligendi natus, veritatis vitae dolor? Corporis ut nulla et, tenetur porro repellendus molestias animi tempore dolores error enim.
       </div>
       <div className='flex flex-col gap-6'>
-        <Profile data-image="" data-content="" link1="" link2="" link3="" rotate="0" styles={gradientStyles[0]} />
-        <Profile data-image="" data-content="" link1="" link2="" link3="" rotate="1" styles={gradientStyles[1]} />
-        <Profile data-image="" data-content="" link1="" link2="" link3="" rotate="0" styles={gradientStyles[2]} />
+        <Profile data-image="" alt="" data-content="" link1="" link2="" link3="" rotate="0" styles={gradientStyles[0]} />
+        <Profile data-image="" alt="" data-content="" link1="" link2="" link3="" rotate="1" styles={gradientStyles[1]} />
+        <Profile url="../assets/rahul.jpg" alt="" data-content="" link1="" link2="" link3="" rotate="0" styles={gradientStyles[2]} />
       </div>
     </div>
   );
