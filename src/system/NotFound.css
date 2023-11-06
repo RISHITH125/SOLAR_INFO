@@ -1,0 +1,7 @@
+.fontSize1 {
+    font-size: min(4vw, 24px);
+}
+
+.fontSize2 {
+    font-size: min(5vw, 28px);
+}
