@@ -9,7 +9,7 @@ export default function About() {
   ];
 
   return (
-    <div className='overflow-scroll overflow-x-hidden w-[100vw] h-[100vh] flex flex-col items-start pl-11 pr-14 sm:ml-7 gap-6'>
+    <div className='overflow-scroll overflow-x-hidden w-[100vw] h-[98vh] flex flex-col items-start pl-11 pr-14 sm:ml-7 gap-6'>
       <div className={`text-white text-3xl mt-5`}>ABOUT</div>
       <div className='text-white w-[90vw]'>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit voluptatibus quia animi eligendi natus, veritatis vitae dolor? Corporis ut nulla et, tenetur porro repellendus molestias animi tempore dolores error enim.

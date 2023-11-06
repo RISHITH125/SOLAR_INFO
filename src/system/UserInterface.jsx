@@ -128,7 +128,7 @@ function Ui() {
 
       <div className='about'>
         <Link to="/About">
-          <div className={`font-sans text-lg text-white`}>ABOUT</div>
+          <div className={`font-sans text-lg text-white hover:text-red-500`}>ABOUT</div>
         </Link>
       </div>
     </div>
