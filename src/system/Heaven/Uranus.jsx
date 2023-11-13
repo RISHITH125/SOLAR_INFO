@@ -1,20 +1,31 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link ,useLocation} from 'react-router-dom'
 function Uranus() {
+  const location = useLocation();
+
   return (
     <>
-      <div className="uranus-hb">
-        <Link to="/uranus">
-            <div className="uranus">
-                <div className="ringu"></div>
-                <div className="topu"></div>
-            </div>
-        </Link>
-  
-    </div>
-    <div className="orbit orbit-ur"></div>
-    </>
-  )
-}
+      {location.pathname === '/' ? (
+      <>
+          <div className="uranus-hb">
+            <Link to="/uranus">
+                <div className="uranus">
+                    <div className="ringu"></div>
+                    <div className="topu"></div>
+                </div>
+            </Link>
 
+        </div>
+        <div className="orbit orbit-ur"></div>
+      </>
+      ):
+      (
+        <>
+              <div className="uranus-i"></div>
+        </>
+      )}
+
+    </>
+  );
+}
 export default Uranus

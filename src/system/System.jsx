@@ -5,49 +5,11 @@ import {Mercury,Venus,Earth,Mars,Jupiter,Saturn,Uranus,Neptune} from './Heaven/h
 import { Link } from 'react-router-dom'
 import Ui from './UserInterface'
 
-const System = () => {
+const System = ({ scaleFactor, setScaleFactor, translateFactor, setTranslateFactor, opacity, setOpacity, getInitialScaleFactor}) => {
   const main = useRef(null);
-  const [scaleFactor, setScaleFactor] = useState(getInitialScaleFactor());
-  const [translateFactor, setTranslateFactor] = useState(getInitialTranslateFactor());
-  const [opacity, setOpacity] = useState(getInitialOpacity());
-
-  function getInitialScaleFactor() {
-    const viewportWidth = window.innerWidth;
-    if (viewportWidth >= 800) {
-      return 1200
-    } else{
-      return 600
-    } 
-  }
-  function getInitialTranslateFactor() {
-    const viewportWidth = window.innerWidth;
-    if (viewportWidth >= 800) 
-    {
-      return -3.3;
-    } 
-    else
-    {
-      return 0
-    }
-  }
-
-  function getInitialOpacity() {
-    const viewportWidth = window.innerWidth;
-    if (viewportWidth >= 800) 
-    {
-      return 1
-    } 
-    else
-    {
-      return 1
-    }
-
-  }
-
   let mainStyle = {
     transform: `scale(${scaleFactor}%) translateX(${translateFactor}%)`
   }
-
   let opacityClass = {
     opacity: `${opacity}`
   }

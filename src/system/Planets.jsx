@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './PreLoader.css'
+import { Link , useLocation} from 'react-router-dom'
+import {Mercury,Venus,Earth,Mars,Jupiter,Saturn,Uranus,Neptune} from './Heaven/hbods'
 
 const PreLoader = () => {
   return (
@@ -10,10 +12,12 @@ const PreLoader = () => {
     </>
   )
 }
-
 const Planet = (props) => {
+  const location = useLocation();
+  const planetName = location.pathname.slice(1);
   let heading = props.name[0].toUpperCase() + props.name.slice(1);
   const [data, setData] = useState(null);
+  let arrow = "<-";
 
   useEffect(() => {
     if (data) return;
@@ -28,25 +32,58 @@ const Planet = (props) => {
         console.log(err);
       })
   }, [setData]);
+  const DynamicPlanets = () => {
+    console.log(planetName)
+    switch (planetName) {
+      case 'mercury':
+        console.log(1)
+        return <Mercury/>;
+      case 'venus':
+        console.log(2)
+        return <Venus/>;
+      case 'earth':
+        console.log(3)
+        return <Earth/>;
+      case 'mars':
+        console.log(4)
+        return <Mars/>;
+      case 'jupiter':
+        console.log(5)
+        return <Jupiter/>;
+      case 'saturn':
+        console.log(6)
+        return <Saturn/>;
+      case 'uranus':
+        console.log(7)
+        return <Uranus/>;
+      case 'neptune':
+        console.log(8)
+        return <Neptune/>;
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
       {!data ? <PreLoader /> : <div className='m-6 text-white flex flex-col items-center gap-6 w-[95vw] h-fit'>
+          <Link to="/" className='absolute left-10'>{arrow}</Link>
           <div className='text-3xl m-2 border-b-2'>{heading}</div>
           <div className='flex md:flex-row flex-col w-[95vw] h-fit items-center justify-between'>
               {/* Left guy */}
               <div className='w-[84vw] md:w-[45vw] h-fit m-4 flex flex-col justify-between gap-5'>
                 <div className='w-[84vw] md:w-[45vw] h-fit'>
-                  <div className='border-l-white border-l-2 px-4 h-fit'>
-                    {data.info}
-                  </div>
+                <div className='border-l-white border-l-2 px-4 h-fit'>
+                  {DynamicPlanets()}
+                
+                </div>
                 </div>
                 <div className='w-[84vw] md:w-[45vw] h-fit border-l-white border-l-2 px-4'>
                   {data.info}
                 </div>
               </div> 
 
-              {/* Right guy */}
+              {/*Right guy*/}
               <div className='w-[84vw] md:w-[45vw] h-fit m-4 flex flex-col justify-between gap-5'>
                 <div className='w-[84vw] md:w-[45vw] h-fit'>
                   <div className='border-l-white border-l-2 px-4 h-fit'>
