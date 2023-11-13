@@ -87,7 +87,7 @@
     --dist_ur: calc(var(--dist_sa) + var(--planet_sep) + var(--indiv-dist));
     --dist_ne: calc(var(--dist_ur) + var(--planet_sep) + var(--indiv-dist));
 
-    --earth-days: 50s;
+    --earth-days: 15s;
 
     --orbit-constant: calc( var(--planet-size-multiplier) * 2vw);
 }
@@ -209,6 +209,14 @@ body::before {
     border-radius: 50%;
     transform: translate(-50%,-50%); 
 }
+@keyframes rot {
+    0%{
+        background-position: calc(1.0vw * var(--planet-size-multiplier))  calc(0.1vw * var(--planet-size-multiplier));
+    }
+    100%{
+        background-position: calc(204.9vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+    }    
+}
 
 .mercury {
     
@@ -220,9 +228,10 @@ body::before {
     background-image: url("textures/2k_mercury.jpg");
     background-size: cover;
     background-repeat:repeat;
-    background-position: center; 
-    /* animation: ROTATE-me calc((88/365)*var(--earth-days)) infinite linear; */
+    background-position: center;
+    animation: rot calc(var(--earth-days) / 365 * 172)  infinite linear; 
 }
+    
 .mercury::after{
     content:'';
     position:absolute;
@@ -247,7 +256,9 @@ body::before {
     background-size: cover;
     background-repeat:repeat;
     background-position: center;
+    animation: rot calc(var(--earth-days) / 365 * 243)  infinite linear; 
 }
+
 .venus::after{
     content:'';
     position:absolute;
@@ -269,18 +280,10 @@ body::before {
     background-image: url("textures/2k_earth_daymap.jpg");
     background-size:cover;
     background-repeat:repeat;
-    animation: earthrot calc(var(--earth-days) / 365)  infinite linear;
+    animation: rot calc(var(--earth-days) / 365 )  infinite linear;
     background-position: calc(1.9vw * var(--planet-size-multiplier))  calc(0.1vw * var(--planet-size-multiplier));
 }
-@keyframes earthrot {
-    0%{
-        background-position: calc(1.0vw * var(--planet-size-multiplier))  calc(0.1vw * var(--planet-size-multiplier));
-    }
-    100%{
-        background-position: calc(204.9vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
-    }
-    
-}
+
 .earth::after{
     content:'';
     position:absolute;
@@ -304,6 +307,7 @@ body::before {
     background-size:cover;
     background-repeat:repeat;
     background-position: 0vw 0vw;
+    animation: rot calc(var(--earth-days) / 365 )  infinite linear;
 }
 .mars::after{
     content:'';
@@ -329,6 +333,7 @@ body::before {
     background-size:cover;
     background-repeat:repeat;
     background-position: 1.0vw 0vw;
+    animation: rot calc(var(--earth-days) / (365*3) )  infinite linear;
 }
 .jupiter::after{
     content:'';
@@ -353,19 +358,18 @@ body::before {
     align-items: center;
     background-color:#f7b565;
     animation: ROTATE-adj calc((10756/365)*var(--earth-days)) infinite linear;
-    /* overflow: hidden; */
     background-image: url("textures/2k_saturn.jpg");
     background-size:cover;
     background-repeat:repeat;
     background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.0vw * var(--planet-size-multiplier));
     box-shadow: inset calc(-0.5vw * var(--planet-size-multiplier)) calc(-0.6vw * var(--planet-size-multiplier)) calc(0.7vw * var(--planet-size-multiplier)) calc(0.05vw * var(--planet-size-multiplier)) rgba(0, 0, 0, 0.8);
+    animation: rot calc(var(--earth-days) / 365 * 0.44002315 )  infinite linear;
 }
 .tops{
     position: relative;
   width:calc(var(--size-sa)-8px);
   height:calc(var(--size-sa)/2);
   top:calc(-3.0vw * var(--planet-size-multiplier));
-  /* height: calc(var(--size-sa)/2); */
   border-radius:calc(2.2vw * var(--planet-size-multiplier)) calc(2.2vw * var(--planet-size-multiplier)) 0vw 0vw;
   background-color: #ffc680;
   background-image: url("textures/2k_saturn.jpg");
@@ -401,6 +405,7 @@ body::before {
     background-size:cover;
     background-repeat:repeat;
     background-position: calc(1.0vw * var(--planet-size-multiplier)) 0vw;
+    animation: rot calc(var(--earth-days) / 365 * 0.71833333 )  infinite linear;
 }
 .ringu{
     rotate: 0deg;
@@ -408,7 +413,6 @@ body::before {
     box-shadow: none !important;
     width:calc(3.3vw * var(--planet-size-multiplier)) ;
     height:calc(3.0vw * var(--planet-size-multiplier)) ;
-    /* border: solid 5px #5f5b48; */
     border-radius: 50%;
     position: relative;
     left:calc(-0.5vw * var(--planet-size-multiplier));
@@ -421,8 +425,6 @@ body::before {
         width:calc(var(--size-ur) -4px);
         height:calc(var(--size-ur)/2 -4px);
         top:calc(-3.0vw * var(--planet-size-multiplier));
-    
-        /* height: calc(var(--size-sa)/2); */
         border-radius:calc(10.0vw * var(--planet-size-multiplier)) calc(10.0vw * var(--planet-size-multiplier)) 0vw 0vw;
         background-color: #5ccee2;
         background-image: url("textures/2k_uranus.jpg");
@@ -448,6 +450,8 @@ body::before {
     background-size: cover;
     background-repeat:repeat;
     background-position: center;
+    animation: rot calc(var(--earth-days) / 365 * 0.67041667 )  infinite linear;
+
 }
 .neptune::after{
     content:'';
@@ -624,3 +628,224 @@ body::before {
     height: calc(2 * var(--dist_ne) - var(--orbit-constant));
   }
 
+
+  .mercury-i, .venus-i, .earth-i, .mars-i , .jupiter-i, .saturn-i , .uranus-i, .neptune-i{
+    position: relative;
+    border-radius: 50%;
+    /* transform: translate(-50%,-50%);  */
+}
+
+@keyframes rot_i {
+    0%{
+        background-position: 200% calc(0.1vw * var(--planet-size-multiplier));
+    }
+    100%{
+        background-position: 0% calc(0.1vw * var(--planet-size-multiplier));
+    }
+    
+}
+
+/* Common styles for all planets */
+.planet-i {
+    width: 30vw;
+    height: 30vw;
+    background-size: cover;
+    background-repeat: repeat;
+    animation: rot_i 5s infinite linear;
+    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+  }
+  
+  /* Earth */
+  .earth-i {
+    width: 30vw;
+    height: 30vw;
+    background-size: cover;
+    background-repeat: repeat;
+    animation: rot_i 5s infinite linear;
+    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+    background-color: blue;
+    background-image: url("textures/2k_earth_daymap.jpg");
+  }
+  
+  /* Mercury */
+  .mercury-i {
+    width: 30vw;
+    height: 30vw;
+    background-size: cover;
+    background-repeat: repeat;
+    animation: rot_i 5s infinite linear;
+    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+    background-color: red;
+    background-image: url("textures/2k_mercury.jpg");
+  }
+  
+  /* Venus */
+  .venus-i {
+    width: 30vw;
+    height: 30vw;
+    background-size: cover;
+    background-repeat: repeat;
+    animation: rot_i 5s infinite linear;
+    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+    background-color: orange;
+    background-image: url("textures/2k_venus_surface.jpg");
+  }
+  
+  /* Mars */
+  .mars-i {
+    width: 30vw;
+    height: 30vw;
+    background-size: cover;
+    background-repeat: repeat;
+    animation: rot_i 5s infinite linear;
+    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+    background-color: red;
+    background-image: url("textures/2k_mars.jpg");
+  }
+  
+  /* Jupiter */
+  .jupiter-i {
+    width: 30vw;
+    height: 30vw;
+    background-size: cover;
+    background-repeat: repeat;
+    animation: rot_i 5s infinite linear;
+    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+    background-color: #dcb07a;
+    background-image: url("textures/2k_jupiter.jpg");
+  }
+  
+  /* Saturn */
+  .saturn-i {
+    width: 30vw;
+    height: 30vw;
+    background-size: cover;
+    background-repeat: repeat;
+    animation: rot_i 5s infinite linear;
+    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+    background-color: #dcb07a;
+    background-image: url("textures/2k_saturn.jpg");
+  }
+  
+  /* Uranus */
+  .uranus-i {
+    width: 30vw;
+    height: 30vw;
+    background-size: cover;
+    background-repeat: repeat;
+    animation: rot_i 5s infinite linear;
+    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+    background-color: #00f;
+    background-image: url("textures/2k_uranus.jpg");
+  }
+  
+  /* Neptune */
+  .neptune-i {
+    width: 30vw;
+    height: 30vw;
+    background-size: cover;
+    background-repeat: repeat;
+    animation: rot_i 5s infinite linear;
+    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+    background-color: #00f;
+    background-image: url("textures/2k_neptune.jpg");
+  }
+  
+  /* Common styles for the planet's shadow */
+  .planet-i::after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    width: 30vw;
+    height: 30vw;
+  }
+  
+  /* Earth's shadow */
+  .earth-i::after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    width: 30vw;
+    height: 30vw;
+    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px blue;
+  }
+  
+  /* Mercury's shadow */
+  .mercury-i::after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    width: 30vw;
+    height: 30vw;
+    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px red;
+  }
+  
+  /* Venus's shadow */
+  .venus-i::after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    width: 30vw;
+    height: 30vw;
+    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0.9)
+  }  
+  
+  /* Mars's shadow */
+.mars-i::after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    width: 30vw;
+    height: 30vw;
+    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px red;
+  }
+  
+  /* Jupiter's shadow */
+  .jupiter-i::after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    width: 30vw;
+    height: 30vw;
+    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px #dcb07a;
+  }
+  
+  /* Saturn's shadow */
+  .saturn-i::after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    width: 30vw;
+    height: 30vw;
+    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px #dcb07a;
+  }
+  
+  /* Uranus's shadow */
+  .uranus-i::after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    width: 30vw;
+    height: 30vw;
+    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px #00f;
+  }
+  
+  /* Neptune's shadow */
+  .neptune-i::after {
+    content: '';
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    width: 30vw;
+    height: 30vw;
+    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px #00f;
+  }
+  
