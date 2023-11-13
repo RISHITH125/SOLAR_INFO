@@ -33,31 +33,22 @@ const Planet = (props) => {
       })
   }, [setData]);
   const DynamicPlanets = () => {
-    console.log(planetName)
     switch (planetName) {
       case 'mercury':
-        console.log(1)
         return <Mercury/>;
       case 'venus':
-        console.log(2)
         return <Venus/>;
       case 'earth':
-        console.log(3)
         return <Earth/>;
       case 'mars':
-        console.log(4)
         return <Mars/>;
       case 'jupiter':
-        console.log(5)
         return <Jupiter/>;
       case 'saturn':
-        console.log(6)
         return <Saturn/>;
       case 'uranus':
-        console.log(7)
         return <Uranus/>;
       case 'neptune':
-        console.log(8)
         return <Neptune/>;
       default:
         return null;
