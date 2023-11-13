@@ -20,7 +20,10 @@ function Saturn() {
       ):
       (
         <>
-              <div className="saturn-i"></div>
+              <div className="saturn-i">
+              <div className="rings-i"></div>
+              <div className="tops-i"></div>
+              </div>
         </>
       )}
 

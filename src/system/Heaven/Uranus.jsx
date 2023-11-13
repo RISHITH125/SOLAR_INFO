@@ -21,7 +21,10 @@ function Uranus() {
       ):
       (
         <>
-              <div className="uranus-i"></div>
+                <div className="uranus-i">
+                    <div className="ringu-i"></div>
+                    <div className="topu-i"></div>
+                </div>
         </>
       )}
 

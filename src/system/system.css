@@ -717,27 +717,124 @@ body::before {
   
   /* Saturn */
   .saturn-i {
-    width: 30vw;
-    height: 30vw;
+    left: 10vw;
+    width: 25vw;
+    height: 25vw;
     background-size: cover;
     background-repeat: repeat;
-    animation: rot_i 5s infinite linear;
-    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
+    /* animation: rot_i 5s infinite linear; */
+    /* background-position: 0% calc(0.1vw * var(--planet-size-multiplier)); */
     background-color: #dcb07a;
     background-image: url("textures/2k_saturn.jpg");
+    box-shadow: inset calc(-1.5vw) 0 2vw calc(0.6vw) rgba(0, 0, 0, 0.8);
   }
+  
+  .tops-i {
+    position: relative;
+    width: calc(25vw);
+    height: calc(25vw / 2);
+    top: calc(-30vw);
+    border-radius: calc(20vw) calc(20vw) 0vw 0vw;
+    background-color: #ffc680;
+    animation: rot_i 5s infinite linear;
+    background-image: url("textures/2k_saturn.jpg");
+    background-size: cover;
+    background-repeat: repeat;
+    /* background-position: 10% 10%; */
+    box-shadow: inset calc(-2vw) 0 2vw 0 rgba(0, 0, 0, 0.8);
+  }
+
+  
+  .rings-i {
+    width: calc(45vw);
+    height: calc(30vw);
+    border-radius: 50%;
+    position: relative;
+    left: -10vw;
+    top: calc(-3vw);
+    transform: rotate3d(1, 0, 0, 50deg);
+    border: solid calc(1vw) #43403d88;
+  }
+  
+  .rings-i::before,
+  .rings-i::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  
+  .rings-i::before {
+    border: solid calc(5vw) #4e473fd3;
+  }
+  
+  .rings-i::after {
+    border: solid calc(2vw)  #2c261f9e;
+    /* transform: rotate(60deg); */
+  }
+  
+  
   
   /* Uranus */
   .uranus-i {
-    width: 30vw;
-    height: 30vw;
+    left: 10vw;
+    width: 25vw;
+    height: 25vw;
     background-size: cover;
     background-repeat: repeat;
-    animation: rot_i 5s infinite linear;
-    background-position: calc(1.0vw * var(--planet-size-multiplier)) calc(0.1vw * var(--planet-size-multiplier));
-    background-color: #00f;
+    /* animation: rot_i 5s infinite linear; */
+    /* background-position: 0% calc(0.1vw * var(--planet-size-multiplier)); */
+    background-color: #dcb07a;
     background-image: url("textures/2k_uranus.jpg");
+    /* box-shadow: inset calc(-1.5vw) 0 2vw calc(0.6vw) rgba(0, 0, 0, 0.8); */
   }
+  
+  .topu-i {
+    position: relative;
+    width: calc(25vw);
+    height: calc(25vw / 2);
+    top: calc(-30vw);
+    border-radius: calc(20vw) calc(20vw) 0vw 0vw;
+    background-color: #ffc680;
+    animation: rot_i 5s infinite linear;
+    background-image: url("textures/2k_uranus.jpg");
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: 0 90px;
+    /* box-shadow: inset calc(-2vw) 0 2vw 0 rgba(0, 0, 0, 0.8); */
+  }
+
+  
+  .ringu-i {
+    width: calc(45vw);
+    height: calc(30vw);
+    border-radius: 50%;
+    position: relative;
+    left: -10vw;
+    top: calc(-3vw);
+    transform: rotate3d(1, 0, 0, 50deg);
+    border: solid calc(3vw) rgba(126, 249, 249, 0.533);
+  }
+  
+  .ringu-i::before,
+  .ringu-i::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  
+  .ringu-i::before {
+    border: solid calc(5vw) rgba(60, 122, 122, 0.533);
+  }
+  
+  .ringu-i::after {
+    border: solid calc(2vw)  rgba(71, 164, 164, 0.533);
+    /* transform: rotate(60deg); */
+  }
+  
   
   /* Neptune */
   .neptune-i {
@@ -780,7 +877,7 @@ body::before {
     border-radius: 50%;
     width: 30vw;
     height: 30vw;
-    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px red;
+    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9);
   }
   
   /* Venus's shadow */
@@ -824,7 +921,7 @@ body::before {
     border-radius: 50%;
     width: 30vw;
     height: 30vw;
-    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px #dcb07a;
+    /* box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px #dcb07a; */
   }
   
   /* Uranus's shadow */
@@ -835,7 +932,7 @@ body::before {
     border-radius: 50%;
     width: 30vw;
     height: 30vw;
-    box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px #00f;
+    /* box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px #00f; */
   }
   
   /* Neptune's shadow */
