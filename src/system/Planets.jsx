@@ -15,7 +15,7 @@ const PreLoader = () => {
 const Planet = (props) => {
   const location = useLocation();
   const planetName = location.pathname.slice(1);
-  let heading = props.name[0].toUpperCase() + props.name.slice(1);
+  let heading = props.name.toUpperCase();
   const [data, setData] = useState(null);
   let arrow = "<-";
 

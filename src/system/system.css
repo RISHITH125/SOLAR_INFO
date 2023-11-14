@@ -777,24 +777,32 @@ body::before {
   
   
   /* Uranus */
-  .uranus-i {
+  .uranushb-i{
+    top:0vh;
     left: 10vw;
     width: 25vw;
     height: 25vw;
+
+  }
+  .uranus-i {
+    top:15vh;
+    left: 10vw;
+    width: 10vw;
+    height: 10vw;
     background-size: cover;
     background-repeat: repeat;
-    /* animation: rot_i 5s infinite linear; */
+    animation: rot_i 5s infinite linear;
     /* background-position: 0% calc(0.1vw * var(--planet-size-multiplier)); */
     background-color: #dcb07a;
     background-image: url("textures/2k_uranus.jpg");
-    /* box-shadow: inset calc(-1.5vw) 0 2vw calc(0.6vw) rgba(0, 0, 0, 0.8); */
+    box-shadow: inset calc(-1.5vw) 0 2vw calc(0.6vw) rgba(0, 0, 0, 0.8);
   }
   
-  .topu-i {
+  /* .topu-i {
     position: relative;
-    width: calc(25vw);
-    height: calc(25vw / 2);
-    top: calc(-30vw);
+    width: calc(20vw);
+    height: calc(20vw / 2);
+    top: calc(-45vw);
     border-radius: calc(20vw) calc(20vw) 0vw 0vw;
     background-color: #ffc680;
     animation: rot_i 5s infinite linear;
@@ -803,18 +811,19 @@ body::before {
     background-repeat: repeat;
     background-position: 0 90px;
     /* box-shadow: inset calc(-2vw) 0 2vw 0 rgba(0, 0, 0, 0.8); */
-  }
+   
+  
 
   
   .ringu-i {
-    width: calc(45vw);
-    height: calc(30vw);
+    width: calc(20vw);
+    height: calc(20vw);
     border-radius: 50%;
     position: relative;
-    left: -10vw;
-    top: calc(-3vw);
-    transform: rotate3d(1, 0, 0, 50deg);
-    border: solid calc(3vw) rgba(126, 249, 249, 0.533);
+    left: -5.1vw;
+    top: calc(-5.2vw);
+    transform: rotate3d(1, 0, 0);
+    border: solid calc(1vw) rgba(126, 249, 249, 0.533);
   }
   
   .ringu-i::before,
@@ -827,11 +836,11 @@ body::before {
   }
   
   .ringu-i::before {
-    border: solid calc(5vw) rgba(60, 122, 122, 0.533);
+    border: solid calc(2vw) rgba(60, 122, 122, 0.533);
   }
   
   .ringu-i::after {
-    border: solid calc(2vw)  rgba(71, 164, 164, 0.533);
+    border: solid calc(1vw)  rgba(71, 164, 164, 0.533);
     /* transform: rotate(60deg); */
   }
   
