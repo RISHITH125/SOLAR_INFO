@@ -1,7 +1,7 @@
 import Profile from "./profilessss/Profile";
-import { rahul, less } from '../assets'
+import { rahul, less, Rishith } from '../assets'
 import { Link } from "react-router-dom";
-import { linksRahul } from "../../constants";
+import { linksRahul , linksRishith } from "../../constants";
 
 export default function About(props) {
 
@@ -23,7 +23,12 @@ export default function About(props) {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit voluptatibus quia animi eligendi natus, veritatis vitae dolor? Corporis ut nulla et, tenetur porro repellendus molestias animi tempore dolores error enim.
       </div>
       <div className='flex flex-col gap-6'>
-        <Profile data-image="" alt="" data-content="" link1="" link2="" link3="" rotate="0" styles={gradientStyles[0]} links={[]} />
+        <Profile data="Hello fellas , this is Rishith P , Computer-Science student & I love to crank my imagination skills to build new stuff , as a reason I love Software Development and Frontend , iam also inter" 
+        url={Rishith}  
+        rotate="0" 
+        styles={gradientStyles[0]}
+        links={linksRishith}
+        />
         
         <Profile data-image="" alt="" data-content="" link1="" link2="" link3="" rotate="1" styles={gradientStyles[1]} links={[]} />
 
