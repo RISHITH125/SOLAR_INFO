@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './PreLoader.css'
-import { Link , useLocation} from 'react-router-dom'
-import {Mercury,Venus,Earth,Mars,Jupiter,Saturn,Uranus,Neptune} from './Heaven/hbods'
+import { less } from '../assets'
+import { Link, useLocation } from 'react-router-dom'
+import { Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune , Sun } from './Heaven/hbods'
 
 const PreLoader = () => {
   return (
@@ -22,34 +23,36 @@ const Planet = (props) => {
   useEffect(() => {
     if (data) return;
     fetch(`http://localhost:8000/planets/${props.name}`)
-      .then((res)=>{
+      .then((res) => {
         return res.json();
       }).then((d) => {
-        setData(d.data[0]); 
-      }).catch((err)=>{
-        console.log("Couldn't connect to the sever :(");
+        setData(d.data[0]);
+      }).catch((err) => {
+        console.log("Couldn't connect to the server :(");
         console.log("The reason might be: ");
         console.log(err);
       })
   }, [setData]);
   const DynamicPlanets = () => {
     switch (planetName) {
+      case 'sun':
+        return <Sun />;
       case 'mercury':
-        return <Mercury/>;
+        return <Mercury />;
       case 'venus':
-        return <Venus/>;
+        return <Venus />;
       case 'earth':
-        return <Earth/>;
+        return <Earth />;
       case 'mars':
-        return <Mars/>;
+        return <Mars />;
       case 'jupiter':
-        return <Jupiter/>;
+        return <Jupiter />;
       case 'saturn':
-        return <Saturn/>;
+        return <Saturn />;
       case 'uranus':
-        return <Uranus/>;
+        return <Uranus />;
       case 'neptune':
-        return <Neptune/>;
+        return <Neptune />;
       default:
         return null;
     }
@@ -58,37 +61,21 @@ const Planet = (props) => {
   return (
     <>
       {!data ? <PreLoader /> : <div className='m-6 text-white flex flex-col items-center gap-6 w-[95vw] h-fit'>
-          <Link to="/" className='absolute left-10'>{arrow}</Link>
-          <div className='text-3xl m-2 border-b-2'>{heading}</div>
-          <div className='flex md:flex-row flex-col w-[95vw] h-fit items-center justify-between'>
-              {/* Left guy */}
-              <div className='w-[84vw] md:w-[45vw] h-fit m-4 flex flex-col justify-between gap-5'>
-                <div className='w-[84vw] md:w-[45vw] h-fit'>
-                <div className='border-l-white border-l-2 px-4 h-fit'>
-                  {DynamicPlanets()}
-                
-                </div>
-                </div>
-                <div className='w-[84vw] md:w-[45vw] h-fit border-l-white border-l-2 px-4'>
-                  {data.info}
-                </div>
-              </div> 
-
-              {/*Right guy*/}
-              <div className='w-[84vw] md:w-[45vw] h-fit m-4 flex flex-col justify-between gap-5'>
-                <div className='w-[84vw] md:w-[45vw] h-fit'>
-                  <div className='border-l-white border-l-2 px-4 h-fit'>
-                    {data.info}
-                  </div>
-                </div>
-                <div className='w-[84vw] md:w-[45vw] h-fit border-l-white border-l-2 px-4'>
-                  {data.info}
-                </div>
-              </div>
-          </div>  
+        <Link to="/" className='absolute left-10'>
+          <img src={less} className="w-[20px] h-fit"/>
+        </Link>
+        <div className='text-3xl m-2 border-b-2'>{heading}</div>
+        <div className={`flex md:flex-row flex-col w-[95vw] h-fit items-center ${props.name === "saturn" || props.name === "uranus" ? "md:justify-between" : "md:justify-around"}`}>
+          {props.name !== "sun" ? <div className={`px-4 h-fit ${props.name === "uranus" || props.name === "saturn" ? "w-[85vw] flex flex-row px-20" : "w-fit"}`}>
+            {DynamicPlanets()}
+          </div> : <div className="w-fit mr-10">< Sun /></div>}
+          <div className={`w-[84vw] ${props.name !== "sun" ? "md:w-[45vw]" : "md:w-[84vw]"} h-fit border-l-white border-l-2 px-4`}>
+            {data.info}
+          </div>
+        </div>
       </div>}
     </>
   )
-}   
+}
 
 export default Planet

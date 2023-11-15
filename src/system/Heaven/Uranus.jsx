@@ -21,10 +21,13 @@ function Uranus() {
       ):
       (
         <>
+              <div className='uranushb-i'>
                 <div className="uranus-i">
                     <div className="ringu-i"></div>
                     <div className="topu-i"></div>
                 </div>
+              </div>
+                
         </>
       )}
 

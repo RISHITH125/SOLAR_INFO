@@ -34,7 +34,7 @@ function Ui() {
                 <img className='w-[2vw] hover:border-2 hover:border-orange-800' src={menu} alt="Menu" />
               </div>
             ) : (
-              <div className={closesymb} onClick={handleClick}>
+              <div className={`Close`} onClick={handleClick}>
               </div>
             )}
             <div className="w-[25vw] h-[90vh] text-white flex flex-col justify-start items-center gap-5">
@@ -53,7 +53,7 @@ function Ui() {
           <div className='absolute cursor-pointer font-bold text-xl italic top-5 left-7 Menu' onClick={handleClick}>
             <div className={`Menu_line1`}></div>
             <div className={`Menu_line2`}></div>
-            <div className={`Menu_line3`}></div>
+            <div className={`Menu_line3`}></div> 
           </div>
         ) : (
           <div className={`cursor-pointer Open`} onClick={handleClick}>
