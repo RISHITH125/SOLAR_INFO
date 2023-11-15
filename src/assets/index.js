@@ -1,6 +1,7 @@
 import menu from './menu.svg';
 import rahul from './rahul.jpg';
 import Rishith from './Rishith.jpg'
+import Prathik from './Prathik.jpg'
 import less from './lesser-than-icon.svg'
 import github from './github.svg'
 import linkedin from './linkedin1.svg'
@@ -15,5 +16,6 @@ export {
     linkedin,
     Rahul,
     insta,
-    Rishith
+    Rishith,
+    Prathik
 }

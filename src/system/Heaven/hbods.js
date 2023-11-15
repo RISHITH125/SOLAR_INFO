@@ -6,7 +6,7 @@ import Jupiter from './Jupiter'
 import Saturn from './Saturn'
 import Uranus from './Uranus'
 import Neptune from './Neptune'
-// import Sun from './Sun'
+import Sun from './Sun'
 export{
-    Mercury,Venus,Earth,Mars,Jupiter,Saturn,Uranus,Neptune
+    Mercury,Venus,Earth,Mars,Jupiter,Saturn,Uranus,Neptune,Sun
 };
