@@ -7,9 +7,14 @@ import About from './system/About'
 import { useState } from 'react';
 
 function App() {
+  const [intro, setIntro] = useState(true); // Add intro state
   const [scaleFactor, setScaleFactor] = useState(getInitialScaleFactor());
   const [translateFactor, setTranslateFactor] = useState(getInitialTranslateFactor());
   const [opacity, setOpacity] = useState(getInitialOpacity());
+
+  const[isPlanetFocused, setIsPlanetFocused] = useState(false);
+  const[focusedPlanet, setFocusedPlanet] = useState(null); // 'mercury', 'venus', etc.
+  const[animationsPaused, setAnimationsPaused] = useState(false);
 
   function getInitialScaleFactor() {
     const viewportWidth = window.innerWidth;
@@ -48,7 +53,9 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<System  scaleFactor={scaleFactor}
+      <Route path="/" element={<System      intro={intro}
+                                            setIntro={setIntro}
+                                            scaleFactor={scaleFactor}
                                             setScaleFactor={setScaleFactor}
                                             translateFactor={translateFactor}
                                             setTranslateFactor={setTranslateFactor}
@@ -56,7 +63,17 @@ function App() {
                                             setOpacity={setOpacity}
                                             getInitialOpacity={getInitialOpacity}
                                             getInitialScaleFactor={getInitialScaleFactor}
-                                            getInitialTranslateFactor={getInitialTranslateFactor}  />} />
+                                            getInitialTranslateFactor={getInitialTranslateFactor}  
+                                            
+                                            isPlanetFocused={isPlanetFocused}
+                                            focusedPlanet={focusedPlanet}
+                                            animationsPaused={animationsPaused}
+                                            setAnimationsPaused={setAnimationsPaused}
+                                            setIsPlanetFocused={setIsPlanetFocused}
+                                            setFocusedPlanet={setFocusedPlanet}
+
+                                            
+                                            />} />
         <Route path="/sun" element={<Planet name="sun"/>}/>
         <Route path="/mercury" element={<Planet name="mercury" />} />
         <Route path="/venus" element={<Planet name="venus" />} />

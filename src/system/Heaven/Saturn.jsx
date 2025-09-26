@@ -1,13 +1,17 @@
 import React from 'react'
 import { Link ,useLocation} from 'react-router-dom'
-function Saturn() {
+function Saturn({isPlanetFocused, focusedPlanet, setIsPlanetFocused, setFocusedPlanet, animationsPaused,setAnimationsPaused}) {
   const location = useLocation();
 
   return (
     <>
       {location.pathname === '/' ? (
       <>
-        <div className="saturn-hb">
+        <div className={`saturn-hb ${animationsPaused ? 'animation-paused' : 'animation-resumed'}`} onClick={() => {
+          setAnimationsPaused(true);
+          setFocusedPlanet('saturn');
+          setIsPlanetFocused(true);
+        }}>
           <Link to="/saturn">
               <div className="saturn">
                   <div className="rings"></div>
@@ -15,7 +19,11 @@ function Saturn() {
               </div>
           </Link>      
       </div>  
-      <div className="orbit orbit-sa"></div>
+      <div className={`orbit orbit-sa hover:border-gray-300 z-[30] ${animationsPaused ? 'animation-paused' : 'animation-resumed'}` } onClick={() => {
+        setAnimationsPaused(true);
+        setFocusedPlanet('saturn');
+        setIsPlanetFocused(true);
+      }}></div>
       </>
       ):
       (

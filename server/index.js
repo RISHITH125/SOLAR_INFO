@@ -1,8 +1,8 @@
-const cors = require('cors');
-const express = require('express');
+import cors from 'cors';
+import express from 'express';
 const app = express();
 const port = 8000;
-const planets = require('./routes/planets');
+import planets from './routes/planets.js';
 
 app.use(cors({ origin: "*" }))
 app.use('/planets/', planets);

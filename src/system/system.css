@@ -211,6 +211,9 @@ body::before {
     border-radius: 50%;
     transform: translate(-50%,-50%); 
 }
+ 
+
+
 @keyframes rot {
     0%{
         background-position: calc(1.0vw * var(--planet-size-multiplier))  calc(0.1vw * var(--planet-size-multiplier));
@@ -970,3 +973,19 @@ body::before {
     box-shadow: inset 20px 20px 20px 20px rgba(0, 0, 0, 0.9), 0 0 50px #00f;
   }
   
+
+  .animation-paused * {
+    animation-play-state: paused !important;
+}
+
+.animation-paused {
+    animation-play-state: paused !important;
+}
+
+.animation-resumed * {
+    animation-play-state: running !important;
+}
+
+.animation-resumed {
+    animation-play-state: running !important;
+}

@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from 'react'
 import './PreLoader.css'
 import { less } from '../assets'
 import { Link, useLocation } from 'react-router-dom'
 import { Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune , Sun } from './Heaven/hbods'
+import { PlanetComponent } from './Heaven/PlanetClass'
 
 const PreLoader = () => {
   return (
@@ -16,43 +18,53 @@ const PreLoader = () => {
 const Planet = (props) => {
   const location = useLocation();
   const planetName = location.pathname.slice(1);
+  // eslint-disable-next-line react/prop-types
   let heading = props.name[0].toUpperCase() + props.name.slice(1);
   const [data, setData] = useState(null);
-  let arrow = "<-";
 
-  useEffect(() => {
-    if (data) return;
-    fetch(`http://localhost:8000/planets/${props.name}`)
-      .then((res) => {
-        return res.json();
-      }).then((d) => {
-        setData(d.data[0]);
-      }).catch((err) => {
-        console.log("Couldn't connect to the server :(");
-        console.log("The reason might be: ");
-        console.log(err);
-      })
-  }, [setData]);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null);
+
+useEffect(() => {
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`http://localhost:8000/planets/${props.name}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const d = await res.json();
+      setData(d.data[0]);
+    } catch (err) {
+      setError(err.message);
+      console.log("Couldn't connect to the server :(");
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, [setData]);
   const DynamicPlanets = () => {
     switch (planetName) {
       case 'sun':
         return <Sun />;
       case 'mercury':
-        return <Mercury />;
+        return <PlanetComponent planet="mercury" {...props} />;
       case 'venus':
-        return <Venus />;
+        return <PlanetComponent planet="venus" {...props} />;
       case 'earth':
-        return <Earth />;
+        return <PlanetComponent planet="earth" {...props} />;
       case 'mars':
-        return <Mars />;
+        return <PlanetComponent planet="mars" {...props} />;
       case 'jupiter':
-        return <Jupiter />;
+        return <PlanetComponent planet="jupiter" {...props} />;
       case 'saturn':
-        return <Saturn />;
+        return <PlanetComponent planet="saturn" {...props} />;
       case 'uranus':
-        return <Uranus />;
+        return <PlanetComponent planet="uranus" {...props} />;
       case 'neptune':
-        return <Neptune />;
+        return <PlanetComponent planet="neptune" {...props} />;
       default:
         return null;
     }
