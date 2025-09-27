@@ -974,6 +974,8 @@ body::before {
   }
   
 
+
+  /* how do i put specific styles for paused animations */
   .animation-paused * {
     animation-play-state: paused !important;
 }

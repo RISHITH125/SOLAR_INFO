@@ -1,26 +1,21 @@
 import React from 'react'
 import { Link ,useLocation} from 'react-router-dom'
-function Neptune({isPlanetFocused, focusedPlanet, setIsPlanetFocused, setFocusedPlanet, animationsPaused,setAnimationsPaused}) {
+import { usePlanet } from '../hooks/usePlanet'
+
+function Neptune() {
   const location = useLocation();
+  const { handleClick, animationClass, FocusStyle } = usePlanet('neptune');
 
   return (
     <>
       {location.pathname === '/' ? (
       <>
-        <div className={`neptune-hb ${animationsPaused ? 'animation-paused' : 'animation-resumed'}`} onClick={() => {
-          setAnimationsPaused(true);
-          setFocusedPlanet('neptune');
-          setIsPlanetFocused(true);
-        }}>
+        <div className={`neptune-hb ${animationClass} ${FocusStyle.focusClass}`} style={FocusStyle.planetStyle} onClick={handleClick}>
           <Link to="/neptune">
               <div className="neptune"></div>
           </Link>
         </div>
-      <div className= {`orbit orbit-ne hover:border-gray-300 z-[10] ${animationsPaused ? 'animation-paused' : 'animation-resumed'}`} onClick={() => {
-        setAnimationsPaused(true);
-        setFocusedPlanet('neptune');
-        setIsPlanetFocused(true);
-      }}></div>
+      <div className= {`orbit orbit-ne hover:border-gray-300 z-[10] ${animationClass}`} style={FocusStyle.orbitStyle} onClick={handleClick}></div>
       </>
       ):
       (

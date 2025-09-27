@@ -1,77 +1,122 @@
 import './system.css'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune } from './Heaven/hbods'
-import {PlanetComponent} from './Heaven/PlanetClass'
 import { Link } from 'react-router-dom'
 import Ui from './UserInterface'
 import { IoPlayForwardCircleOutline } from "react-icons/io5";
-// eslint-disable-next-line react/prop-types
-const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor, setTranslateFactor, opacity, setOpacity, getInitialScaleFactor, isPlanetFocused, focusedPlanet, animationsPaused, setAnimationsPaused, setIsPlanetFocused, setFocusedPlanet }) => {
+
+import { useSolarSystem } from './contexts/SolarSystemContext';
+
+const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor, setTranslateFactor, opacity, setOpacity, getInitialScaleFactor }) => {
+  const animatingRef = useRef(false);
   const main = useRef(null);
-  let mainStyle = {
-    transform: `scale(${scaleFactor}%) translateX(${translateFactor}%)`
+  let mainStyle
+
+  const { focusedPlanet, getMetrics, isPlanetFocused } = useSolarSystem();
+  
+  // ⭐ NEW STATE for the two-step approach
+  const [currentTransform, setCurrentTransform] = useState(`scale(${scaleFactor}%) translateX(${translateFactor}%)`);
+  const [transformOrigin, setTransformOrigin] = useState('center center');
+  
+  // Reset to initial state when un-focused
+  useEffect(() => {
+    if (!isPlanetFocused) {
+      setCurrentTransform(`scale(${scaleFactor}%) translateX(${translateFactor}%)`);
+      setTransformOrigin('center center');
+    }
+  }, [isPlanetFocused, scaleFactor, translateFactor]);
+
+  // Two-phase planet focusing animation
+  useEffect(() => {
+    if (isPlanetFocused && focusedPlanet) {
+      const metrics = getMetrics(focusedPlanet);
+      if (!metrics) return;
+
+      const scale = metrics.scale;
+      const targetTx = metrics.SystemTranslation.x;
+      const targetTy = metrics.SystemTranslation.y;
+
+      // Step 1: Translate to center the planet
+      const step1Duration = 500; // ms
+      if (main.current) {
+        main.current.style.transition = `transform ${step1Duration}ms ease-out`;
+      }
+      setCurrentTransform(`translateX(${targetTx}px) translateY(${targetTy}px)`);
+
+      // Step 2: Add scale after translation completes
+      const timeoutId = setTimeout(() => {
+        setTransformOrigin(`translateX(${targetTx * scale}px) translateY(${targetTy * scale}px)`); // Scale from center
+        
+        if (main.current) {
+          const step2Duration = 400; // ms
+          main.current.style.transition = `transform ${step2Duration}ms ease-in-out`;
+        }
+
+        setCurrentTransform(`translateX(${ targetTx * scale}px) translateY(${ targetTy * scale}px) scale(${scale})`);
+      }, step1Duration);
+
+      return () => clearTimeout(timeoutId); // Cleanup
+    }
+  }, [isPlanetFocused, focusedPlanet, getMetrics]);
+
+  // 🧪 ADD DEBUG LOGGING
+  // console.log('🔍 System render:', { 
+  //   isPlanetFocused, 
+  //   focusedPlanet,
+  //   intro 
+  // });
+
+  // Apply the dynamic styles
+  if (isPlanetFocused && focusedPlanet) {
+    mainStyle = {
+      transform: currentTransform,
+      transformOrigin: transformOrigin,
+      // Transition is handled directly in useEffect
+    };
+  } else {
+    mainStyle = {
+      transform: `scale(${scaleFactor}%) translateX(${translateFactor}%)`,
+      transformOrigin: 'center center'
+    };
   }
+
   let opacityClass = {
     opacity: `${opacity}`
   }
 
-  const animatingRef = useRef(false);
 
- const handleIntroZoomOut = () => {
-  const targetScale = 80; 
-  const duration = 900;   
-  const startScale = scaleFactor; 
-  const startTranslate = translateFactor;
-  const startOpacity = opacity;
-  const startTime = performance.now();
-  setIntro(false);
-  if(animatingRef.current) return; 
-  animatingRef.current = true;
+  const handleIntroZoomOut = () => {
+    const targetScale = 80;
+    const duration = 900;
+    const startScale = scaleFactor;
+    const startTranslate = translateFactor;
+    const startOpacity = opacity;
+    const startTime = performance.now();
+    setIntro(false);
+    if (animatingRef.current) return;
+    animatingRef.current = true;
 
-  const animate = (currentTime) => {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1); // clamp 0 → 1
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1); // clamp 0 → 1
 
-    // Smooth easing
-    const easeOut = 1 - Math.pow(1 - progress, 7);
+      // Smooth easing
+      const easeOut = 1 - Math.pow(1 - progress, 7);
 
-    setScaleFactor(startScale - (startScale - targetScale) * easeOut);
-    setTranslateFactor(startTranslate + (translateFactor - startTranslate + 0.03) * easeOut);
-    setOpacity(startOpacity - (startOpacity - 0) * easeOut); // fade out smoothly
+      setScaleFactor(startScale - (startScale - targetScale) * easeOut);
+      setTranslateFactor(startTranslate + (translateFactor - startTranslate + 1) * easeOut);
+      setOpacity(startOpacity - (startOpacity - 0) * easeOut); // fade out smoothly
 
-    if (progress < 1) {
-      requestAnimationFrame(animate);
-    } else {
-      animatingRef.current = false;
-    }
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        animatingRef.current = false;
+      }
+    };
+
+    requestAnimationFrame(animate);
   };
 
-  requestAnimationFrame(animate);
-};
-
-
-
-
-  // useEffect(() => {
-  //   main.current.addEventListener('wheel', (e) => {
-  //     if (e.deltaY > 0) {
-  //       setScaleFactor((current) => {
-  //         if (current < 100) return current;
-  //         setTranslateFactor((c) => c + 0.03);
-  //         setOpacity(o => o - 0.02)
-  //         return current - 20;
-  //       })
-  //     } else {
-  //       setScaleFactor((current) => {
-  //         if (current < 100 || current >= getInitialScaleFactor()) return current;
-  //         setTranslateFactor((c) => c - 0.03);
-  //         setOpacity(o => o + 0.02)
-  //         return current + 20;
-  //       })
-
-  //     }
-  //   })
-  // }, [main])
 
   const viewportWidth = window.innerWidth;
   const leftvalue = viewportWidth >= 800 ? '3vw' : '0.2vw'
@@ -92,22 +137,14 @@ const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor,
           <Link to="/sun">
             <div className="sun-shadow" />
           </Link>
-          {/* <Mercury isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused} />
-          <Venus isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused} />
-          <Earth isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused} />
-          <Mars isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused} />
-          <Jupiter isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused} />
-          <Saturn isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused} />
-          <Uranus isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused} />
-          <Neptune isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused} /> */}
-          <PlanetComponent planet="mercury" isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused}/>
-          <PlanetComponent planet="venus" isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused}/>
-          <PlanetComponent planet="earth" isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused}/>
-          <PlanetComponent planet="mars" isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused}/>
-          <PlanetComponent planet="jupiter" isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused}/>
-          <PlanetComponent planet="saturn" isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused}/>
-          <PlanetComponent planet="uranus" isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused}/>
-          <PlanetComponent planet="neptune" isPlanetFocused={isPlanetFocused} focusedPlanet={focusedPlanet} setIsPlanetFocused={setIsPlanetFocused} setFocusedPlanet={setFocusedPlanet} animationsPaused={animationsPaused} setAnimationsPaused={setAnimationsPaused}/>
+          <Mercury />
+          <Venus />
+          <Earth />
+          <Mars />
+          <Jupiter />
+          <Saturn />
+          <Uranus />
+          <Neptune />
         </div>
 
       </div>
@@ -120,7 +157,7 @@ const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor,
           Click here
         </p>
       </div>}
-      
+
 
 
     </div>

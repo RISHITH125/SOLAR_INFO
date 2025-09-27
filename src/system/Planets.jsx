@@ -45,26 +45,53 @@ useEffect(() => {
 
   fetchData();
 }, [setData]);
+
+
+  // const DynamicPlanets = () => {
+  //   switch (planetName) {
+  //     case 'sun':
+  //       return <Sun />;
+  //     case 'mercury':
+  //       return <PlanetComponent planet="mercury" {...props} />;
+  //     case 'venus':
+  //       return <PlanetComponent planet="venus" {...props} />;
+  //     case 'earth':
+  //       return <PlanetComponent planet="earth" {...props} />;
+  //     case 'mars':
+  //       return <PlanetComponent planet="mars" {...props} />;
+  //     case 'jupiter':
+  //       return <PlanetComponent planet="jupiter" {...props} />;
+  //     case 'saturn':
+  //       return <PlanetComponent planet="saturn" {...props} />;
+  //     case 'uranus':
+  //       return <PlanetComponent planet="uranus" {...props} />;
+  //     case 'neptune':
+  //       return <PlanetComponent planet="neptune" {...props} />;
+  //     default:
+  //       return null;
+  //   }
+  // };
+
   const DynamicPlanets = () => {
     switch (planetName) {
       case 'sun':
         return <Sun />;
       case 'mercury':
-        return <PlanetComponent planet="mercury" {...props} />;
+        return <Mercury {...props} />;
       case 'venus':
-        return <PlanetComponent planet="venus" {...props} />;
+        return <Venus {...props} />;
       case 'earth':
-        return <PlanetComponent planet="earth" {...props} />;
+        return <Earth {...props} />;
       case 'mars':
-        return <PlanetComponent planet="mars" {...props} />;
+        return <Mars {...props} />;
       case 'jupiter':
-        return <PlanetComponent planet="jupiter" {...props} />;
+        return <Jupiter {...props} />;
       case 'saturn':
-        return <PlanetComponent planet="saturn" {...props} />;
+        return <Saturn {...props} />;
       case 'uranus':
-        return <PlanetComponent planet="uranus" {...props} />;
+        return <Uranus {...props} />;
       case 'neptune':
-        return <PlanetComponent planet="neptune" {...props} />;
+        return <Neptune {...props} />;
       default:
         return null;
     }
