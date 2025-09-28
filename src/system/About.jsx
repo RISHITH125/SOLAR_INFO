@@ -3,7 +3,10 @@ import { rahul, less, Rishith, Prathik } from '../assets'
 import { Link } from "react-router-dom";
 import { linksPrathik, linksRahul , linksRishith } from "../../constants";
 
+import { useSolarSystem } from './contexts/SolarSystemContext';
 export default function About(props) {
+
+  const { resetAnimation } = useSolarSystem();
 
   const gradientStyles = [
     {backgroundImage:`linear-gradient(to left, transparent, rgb(255 162 0)`}, 
@@ -14,7 +17,7 @@ export default function About(props) {
   return (
     <div className='overflow-scroll overflow-x-hidden w-[100vw] h-[99vh] flex flex-col items-start ml-3 sm:ml-7 gap-6'>
       <div className="flex flex-col gap-10 items-left pt-5 p-3">
-        <Link to="/" className='text-white'>
+        <Link to="/" className='text-white' onClick={resetAnimation}>
           <img src={less} className="w-[20px] h-fit mt-2"/>
         </Link>
         <div className={`text-white h-fit text-5xl font-extrabold ml-10 hover:cursor-default hover:text-orange-600 transition-colors hover:decoration-slice; decoration-orange-950`}>ABOUT</div>

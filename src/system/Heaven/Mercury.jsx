@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { usePlanet } from '../hooks/usePlanet';
 
-function Mercury() {
+function Mercury({ intro }) {
   const location = useLocation();
   const { handleClick, animationClass, FocusStyle } = usePlanet('mercury');
 
@@ -9,13 +9,13 @@ function Mercury() {
     <>
       {location.pathname === '/' ? (
         <>
-          <div className={`mercury-hb ${animationClass} ${FocusStyle.focusClass}`} style={FocusStyle.planetStyle} onClick={handleClick}>
-            <Link to="/mercury">
+          <div className={`mercury-hb ${animationClass} ${FocusStyle.focusClass} cursor-pointer`} style={FocusStyle.planetStyle} onClick={intro ? null : handleClick}>
+            <span>
               <div className="mercury"></div>	
-            </Link>
+            </span>
           </div>
 
-          <div className="orbit orbit-me hover:border-gray-300 z-[80]" style={FocusStyle.orbitStyle} onClick={handleClick}></div>
+          <div className="orbit orbit-me hover:border-gray-300 z-[80] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
         </>
       ) : (
         <>

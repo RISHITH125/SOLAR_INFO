@@ -191,7 +191,7 @@ body::before {
     /* transform: translate(-50%, -50%); */
     background-color: rgba(0, 0, 0, 0)
 }
-.mercury-hb, .venus-hb, .earth-hb, .mars-hb , .jupiter-hb, .saturn-hb , .uranus-hb, .neptune-hb{
+.sun-hb, .mercury-hb, .venus-hb, .earth-hb, .mars-hb , .jupiter-hb, .saturn-hb , .uranus-hb, .neptune-hb{
     position: absolute;
     max-height:0px;
     max-width: 0px;

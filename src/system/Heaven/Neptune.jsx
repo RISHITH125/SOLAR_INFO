@@ -2,7 +2,7 @@ import React from 'react'
 import { Link ,useLocation} from 'react-router-dom'
 import { usePlanet } from '../hooks/usePlanet'
 
-function Neptune() {
+function Neptune({ intro }) {
   const location = useLocation();
   const { handleClick, animationClass, FocusStyle } = usePlanet('neptune');
 
@@ -10,12 +10,12 @@ function Neptune() {
     <>
       {location.pathname === '/' ? (
       <>
-        <div className={`neptune-hb ${animationClass} ${FocusStyle.focusClass}`} style={FocusStyle.planetStyle} onClick={handleClick}>
-          <Link to="/neptune">
+        <div className={`neptune-hb ${animationClass} ${FocusStyle.focusClass} cursor-pointer`} style={FocusStyle.planetStyle} onClick={intro ? null : handleClick}>
+          <span>
               <div className="neptune"></div>
-          </Link>
+          </span>
         </div>
-      <div className= {`orbit orbit-ne hover:border-gray-300 z-[10] ${animationClass}`} style={FocusStyle.orbitStyle} onClick={handleClick}></div>
+      <div className= {`orbit orbit-ne hover:border-gray-300 z-[10] cursor-pointer ${animationClass}`} style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
       </>
       ):
       (

@@ -1,9 +1,8 @@
 
 import { Link, useLocation } from 'react-router-dom';
 import { usePlanet } from '../hooks/usePlanet';
-import { useEffect } from 'react';
 
-function Earth() {
+function Earth({ intro }) {
   const location = useLocation();
   const { handleClick, animationClass, FocusStyle } = usePlanet('earth');
 
@@ -11,13 +10,13 @@ function Earth() {
     <>
       {location.pathname === '/' ? (
         <>
-          <div className={`earth-hb ${animationClass} ${FocusStyle.focusClass}`} style={FocusStyle.planetStyle} onClick={handleClick}>
-            <Link to="/earth">
+          <div className={`earth-hb ${animationClass} ${FocusStyle.focusClass} cursor-pointer`} style={FocusStyle.planetStyle} onClick={intro ? null : handleClick}>
+            <span>
               <div className="earth"></div>
-            </Link>
+            </span>
           </div>
 
-          <div className={`orbit orbit-ea hover:border-gray-300 z-[60] `} style={FocusStyle.orbitStyle} onClick={handleClick}></div>
+          <div className={`orbit orbit-ea hover:border-gray-300 z-[60] cursor-pointer`} style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
         </>
       ) : (
         <>

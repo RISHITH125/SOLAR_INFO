@@ -1,24 +1,25 @@
 import './system.css'
 import { useEffect, useRef, useState } from 'react'
 import { Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune } from './Heaven/hbods'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Ui from './UserInterface'
 import { IoPlayForwardCircleOutline } from "react-icons/io5";
 
+import { usePlanet } from './hooks/usePlanet'
 import { useSolarSystem } from './contexts/SolarSystemContext';
 
-const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor, setTranslateFactor, opacity, setOpacity, getInitialScaleFactor }) => {
+const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor, setTranslateFactor, opacity, setOpacity }) => {
+  const { handleClick } = usePlanet("sun");
   const animatingRef = useRef(false);
   const main = useRef(null);
+  const navigate = useNavigate();
   let mainStyle
 
   const { focusedPlanet, getMetrics, isPlanetFocused } = useSolarSystem();
   
-  // ⭐ NEW STATE for the two-step approach
   const [currentTransform, setCurrentTransform] = useState(`scale(${scaleFactor}%) translateX(${translateFactor}%)`);
   const [transformOrigin, setTransformOrigin] = useState('center center');
   
-  // Reset to initial state when un-focused
   useEffect(() => {
     if (!isPlanetFocused) {
       setCurrentTransform(`scale(${scaleFactor}%) translateX(${translateFactor}%)`);
@@ -26,7 +27,7 @@ const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor,
     }
   }, [isPlanetFocused, scaleFactor, translateFactor]);
 
-  // Two-phase planet focusing animation
+
   useEffect(() => {
     if (isPlanetFocused && focusedPlanet) {
       const metrics = getMetrics(focusedPlanet);
@@ -35,43 +36,50 @@ const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor,
       const scale = metrics.scale;
       const targetTx = metrics.SystemTranslation.x;
       const targetTy = metrics.SystemTranslation.y;
+      const errorX = metrics.SystemTranslation.errX;
+      const errorY = metrics.SystemTranslation.errY;
 
-      // Step 1: Translate to center the planet
-      const step1Duration = 500; // ms
+    
+      const step1Duration = 500; 
       if (main.current) {
         main.current.style.transition = `transform ${step1Duration}ms ease-out`;
       }
-      setCurrentTransform(`translateX(${targetTx}px) translateY(${targetTy}px)`);
+      setCurrentTransform(`translateX(${targetTx - errorX}px) translateY(${targetTy - errorY}px)`);
 
-      // Step 2: Add scale after translation completes
       const timeoutId = setTimeout(() => {
-        setTransformOrigin(`translateX(${targetTx * scale}px) translateY(${targetTy * scale}px)`); // Scale from center
+        const secondMetrics = getMetrics(focusedPlanet);
+        if (!secondMetrics) return;
+
+        const finalDeltaX = secondMetrics.SystemTranslation.x;
+        const finalDeltaY = secondMetrics.SystemTranslation.y;
+        const errorX = secondMetrics.SystemTranslation.errX;
+        const errorY = secondMetrics.SystemTranslation.errY;
+
+        // Use the actual planet position as transform origin for scaling
+        setTransformOrigin(`translateX(${(finalDeltaX - errorX) * scale}px) translateY(${(finalDeltaY - errorY) * scale}px)`);
         
         if (main.current) {
-          const step2Duration = 400; // ms
+          const step2Duration = 400; 
           main.current.style.transition = `transform ${step2Duration}ms ease-in-out`;
         }
 
-        setCurrentTransform(`translateX(${ targetTx * scale}px) translateY(${ targetTy * scale}px) scale(${scale})`);
+        // Apply scaling with the corrected origin
+        setCurrentTransform(`translateX(${(finalDeltaX - errorX) * scale}px) translateY(${(finalDeltaY - errorY) * scale}px) scale(${scale})`);
+
+        // Navigate to planet route after scaling animation completes
+        setTimeout(() => {
+          navigate(`/${focusedPlanet}`);
+        }, 400); // Wait for step2Duration to complete
       }, step1Duration);
 
       return () => clearTimeout(timeoutId); // Cleanup
     }
   }, [isPlanetFocused, focusedPlanet, getMetrics]);
 
-  // 🧪 ADD DEBUG LOGGING
-  // console.log('🔍 System render:', { 
-  //   isPlanetFocused, 
-  //   focusedPlanet,
-  //   intro 
-  // });
-
-  // Apply the dynamic styles
   if (isPlanetFocused && focusedPlanet) {
     mainStyle = {
       transform: currentTransform,
       transformOrigin: transformOrigin,
-      // Transition is handled directly in useEffect
     };
   } else {
     mainStyle = {
@@ -119,8 +127,8 @@ const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor,
 
 
   const viewportWidth = window.innerWidth;
-  const leftvalue = viewportWidth >= 800 ? '3vw' : '0.2vw'
-  const leftvaluesep = viewportWidth >= 800 ? '7vw' : '6.5vw'
+  const leftvalue = viewportWidth >= 800 ? '3.5vw' : '0.2vw'
+  const leftvaluesep = viewportWidth >= 800 ? '6.5vw' : '6.5vw'
   // const leftvalue='3vw'
 
 
@@ -134,22 +142,22 @@ const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor,
 
 
         <div className='absolute'>
-          <Link to="/sun">
+          <span className='sun-hb' onClick={intro ? null : handleClick}>
             <div className="sun-shadow" />
-          </Link>
-          <Mercury />
-          <Venus />
-          <Earth />
-          <Mars />
-          <Jupiter />
-          <Saturn />
-          <Uranus />
-          <Neptune />
+          </span>
+          <Mercury intro={intro} />
+          <Venus intro={intro} />
+          <Earth intro={intro} />
+          <Mars intro={intro} />
+          <Jupiter intro={intro} />
+          <Saturn intro={intro} />
+          <Uranus intro={intro} />
+          <Neptune intro={intro} />
         </div>
 
       </div>
       {scaleFactor <= 100 && <div className='UI'><Ui /></div>}
-      {intro && <div className="absolute left-[calc(50%-5%)] bottom-10 text-white flex items-center gap-2 group" onClick={handleIntroZoomOut}>
+      {intro && <div className="absolute left-[calc(50%-5%)] bottom-10 text-white flex items-center gap-2 group cursor-pointer" onClick={handleIntroZoomOut}>
         <IoPlayForwardCircleOutline
           className="text-white scale-[400%] m-4 transition-all duration-300 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(220,176,122,1)] group-hover:scale-[450%] group-hover:mr-6"
         />

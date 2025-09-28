@@ -2,20 +2,19 @@ import { Link ,useLocation} from 'react-router-dom'
 import { usePlanet } from '../hooks/usePlanet';
 
 
-function Jupiter() {
+function Jupiter({ intro }) {
   const location = useLocation();
   const { handleClick, animationClass, FocusStyle } = usePlanet('jupiter');
   return (
     <>
       {location.pathname === '/' ? (
         <>
-        <div className={`jupiter-hb ${animationClass} ${FocusStyle.focusClass}`} style={FocusStyle.planetStyle} onClick={() => {handleClick();}}>
-          <Link to="/jupiter">
+        <div className={`jupiter-hb ${animationClass} ${FocusStyle.focusClass} cursor-pointer`} style={FocusStyle.planetStyle} onClick={intro ? null : handleClick}>
+          <span>
               <div className="jupiter"></div>
-          </Link>
-      
+          </span>
         </div>
-        <div className="orbit orbit-ju hover:border-gray-300 z-[40]" style={FocusStyle.orbitStyle} onClick={() => {handleClick();}}>
+        <div className="orbit orbit-ju hover:border-gray-300 z-[40] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}>
         </div>
 
       </>
