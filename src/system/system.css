@@ -374,7 +374,7 @@ body::before {
     position: relative;
   width:calc(var(--size-sa)-8px);
   height:calc(var(--size-sa)/2);
-  top:calc(-3.0vw * var(--planet-size-multiplier));
+  top:calc(-3.6vw * var(--planet-size-multiplier));
   border-radius:calc(2.2vw * var(--planet-size-multiplier)) calc(2.2vw * var(--planet-size-multiplier)) 0vw 0vw;
   background-color: #ffc680;
   background-image: url("textures/2k_saturn.jpg");
@@ -385,16 +385,23 @@ body::before {
 }
 .rings{
         rotate: 0deg;
-        border:solid calc(0.6vw * var(--planet-size-multiplier)) #2c261f;
         box-shadow: none !important;
-        width:  calc(5.0vw * var(--planet-size-multiplier));
-        height: calc(3.0vw * var(--planet-size-multiplier));
+        width:  calc(5.8vw * var(--planet-size-multiplier));
+        height: calc(3.6vw * var(--planet-size-multiplier));
         /* border: solid 5px #5f5b48; */
         border-radius: 50%;
         position: relative;
-        left:calc(-1.2vw * var(--planet-size-multiplier));
-        top:calc( -0.3vw* var(--planet-size-multiplier)) ;
-        transform: rotate3d(1, 0, 0,60deg); 
+        left:calc(-1.6vw * var(--planet-size-multiplier));
+        top:calc( -0.5vw* var(--planet-size-multiplier)) ;
+        transform: rotate3d(1, 0, 0,60deg);
+        background: radial-gradient(ellipse at center,
+          transparent calc(50% - 0.6vw * var(--planet-size-multiplier)), /* Inner transparent core */
+          rgba(150, 130, 100, 0.4) calc(50% - 0.4vw * var(--planet-size-multiplier)), /* Lighter inner ring */
+          rgba(120, 100, 70, 0.8) 50%, /* Main ring body - same as rings-i */
+          rgba(90, 75, 50, 0.6) calc(50% + 0.4vw * var(--planet-size-multiplier)), /* Darker outer edge */
+          rgba(150, 130, 100, 0.3) calc(50% + 0.6vw * var(--planet-size-multiplier)), /* Fading outer transition */
+          transparent calc(50% + 0.8vw * var(--planet-size-multiplier)) /* Outer transparent */
+        );
 }
 .saturn-hb{
     animation: ROTATE-sahb calc((10756/365)*var(--earth-days)) infinite linear;
@@ -414,15 +421,23 @@ body::before {
 }
 .ringu{
     rotate: 0deg;
-    border:solid calc(0.3vw * var(--planet-size-multiplier)) #ACE5EE;
     box-shadow: none !important;
-    width:calc(3.3vw * var(--planet-size-multiplier)) ;
-    height:calc(3.0vw * var(--planet-size-multiplier)) ;
+    width:calc(4.0vw * var(--planet-size-multiplier)) ;
+    height:calc(3.6vw * var(--planet-size-multiplier)) ;
     border-radius: 50%;
     position: relative;
-    left:calc(-0.5vw * var(--planet-size-multiplier));
-    top:calc(-0.4vw * var(--planet-size-multiplier));
-    transform: rotate3d(1, 0, 0,65deg); 
+    left:calc(-0.8vw * var(--planet-size-multiplier));
+    top:calc(-0.6vw * var(--planet-size-multiplier));
+    transform: rotate3d(1, 0, 0,65deg);
+    background: radial-gradient(ellipse at center,
+      transparent calc(50% - 0.3vw * var(--planet-size-multiplier)), /* Inner transparent core */
+      rgba(172, 229, 238, 0.3) calc(50% - 0.2vw * var(--planet-size-multiplier)), /* Light inner ring */
+      rgba(172, 229, 238, 0.8) calc(50% - 0.1vw * var(--planet-size-multiplier)), /* Main ring fade-in */
+      rgba(172, 229, 238, 1) 50%, /* Peak ring opacity */
+      rgba(150, 210, 220, 0.8) calc(50% + 0.1vw * var(--planet-size-multiplier)), /* Slightly darker outer */
+      rgba(172, 229, 238, 0.4) calc(50% + 0.2vw * var(--planet-size-multiplier)), /* Fade out */
+      transparent calc(50% + 0.3vw * var(--planet-size-multiplier)) /* Outer transparent */
+    );
 }
 .topu
 {
