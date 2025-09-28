@@ -1,11 +1,10 @@
-/* eslint-disable react/prop-types */
 import './PreLoader.css'
-import { less } from '../assets'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Sun } from './Heaven/hbods'
 import { useSolarSystem } from './contexts/SolarSystemContext';
 import { usePlanet } from './hooks/usePlanet';
 import {getScrollbarClass} from '../util/customScrollbar';
+import BackButton from './components/Back';
 
 const TextLoader = () => {
   return (
@@ -97,13 +96,7 @@ const Planet = (props) => {
 
   return (
     <div className='w-[100vw] h-[100vh] flex items-center justify-center'>
-      <Link 
-        to="/" 
-        className='fixed left-10 top-10 z-[9999] bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all' 
-        onClick={resetAnimation}
-      >
-        <img src={less} className="w-[20px] h-fit" />
-      </Link>
+      <BackButton />
 
       <div className='m-6 text-white flex items-center justify-center'>
         <div className={`flex md:flex-row flex-col items-center  ${props.name === "saturn" || props.name === "uranus" ? "md:justify-between gap-[25vw]" : "md:justify-around gap-[5vw]"}`}>
@@ -117,8 +110,8 @@ const Planet = (props) => {
             </div>
           )}
           <div>
-            <div className='text-8xl pb-4 m-2 border-b-4 font-black '>{heading + "."}</div>
-            <div className={`max-w-2xl max-h-[40vh] overflow-y-auto font-bold ${props.name !== "sun" ? "md:w-[45vw]" : "md:w-[84vw]"} border-l-white border-l-4 px-4 pr-2 ${scrollbar}`}>
+            <div className='text-8xl pb-4 m-2 border-b-4 font-ZenDots'>{heading + "."}</div>
+            <div className={`max-w-2xl max-h-[40vh] overflow-y-auto font-Rajdhani font-bold text-2xl ${props.name !== "sun" ? "md:w-[45vw]" : "md:w-[84vw]"} border-l-white border-l-4 px-4 pr-2 ${scrollbar}`}>
               {renderTextContent()}
             </div>
           </div>

@@ -16,7 +16,7 @@ function Earth({ intro }) {
             </span>
           </div>
 
-          <div className={`orbit orbit-ea hover:border-white/60 z-[60] cursor-pointer`} style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
+          <div className={`orbit orbit-ea hover:border-gray-300 z-[60] cursor-pointer`} style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
         </>
       ) : (
         <>

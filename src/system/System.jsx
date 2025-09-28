@@ -127,7 +127,7 @@ const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor,
 
 
   const viewportWidth = window.innerWidth;
-  const leftvalue = viewportWidth >= 800 ? '3.5vw' : '0.2vw'
+  const leftvalue = viewportWidth >= 800 ? '3vw' : '0.2vw'
   const leftvaluesep = viewportWidth >= 800 ? '6.5vw' : '6.5vw'
   // const leftvalue='3vw'
 
@@ -136,8 +136,8 @@ const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor,
     <div className=''>
       <div ref={main} className={`main flex justify-center items-center`} style={mainStyle}>
         <div className="sun flex absolute items-center">
-          <h1 className={`absolute font-thin text-white left-[${leftvalue}] info`} style={opacityClass}>SOLAR</h1>
-          <h1 className={`absolute text-white left-[${leftvaluesep}] info`} style={opacityClass}>INFO</h1>
+          <h1 className={`absolute font-Audiowide text-sm text-white left-[${leftvalue}] info`} style={opacityClass}>SOLAR</h1>
+          <h1 className={`absolute font-Audiowide text-sm text-white left-[${leftvaluesep}] info`} style={opacityClass}>INFO</h1>
         </div>
 
 
@@ -161,7 +161,7 @@ const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor,
         <IoPlayForwardCircleOutline
           className="text-white scale-[400%] m-4 transition-all duration-300 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(220,176,122,1)] group-hover:scale-[450%] group-hover:mr-6"
         />
-        <p className="text-2xl select-none font-bold transition-all duration-300 group-hover:[text-shadow:0_0_10px_rgba(220,176,122,1)] group-hover:scale-[112.5%] ">
+        <p className="text-3xl select-none font-Rajdhani font-bold transition-all duration-300 group-hover:[text-shadow:0_0_10px_rgba(220,176,122,1)] group-hover:scale-[112.5%] ">
           Click here
         </p>
       </div>}

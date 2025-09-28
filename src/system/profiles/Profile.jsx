@@ -1,4 +1,3 @@
-import React from 'react'
 function Profile(props) {
   return (
     <>
@@ -7,7 +6,7 @@ function Profile(props) {
             props.rotate === "0" ? <>
               <img src={props.url} className='w-[160px] border-2 h-fit rounded-full' />
               <div className='flex flex-col gap-2'>
-                <div className='text-white'>
+                <div className='font-Rajdhani text-2xl text-white font-bold'>
                 {props.data}
                 </div>
 
@@ -24,7 +23,7 @@ function Profile(props) {
             </> :
             <>
               <div className='flex flex-col gap-2'>
-                <div className='text-white'>
+                <div className=' font-Rajdhani text-2xl text-white font-bold'>
                 {props.data}
                 </div>
 

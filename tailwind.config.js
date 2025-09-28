@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        Audiowide: ['Audiowide', 'sans-serif'],
+        Rajdhani: ['Rajdhani', 'sans-serif'],
+        ZenDots: ['ZenDots', 'sans-serif'],
+      }
+
+    },
   },
   plugins: [],
 }

@@ -8,10 +8,9 @@ function Ui() {
 
   return (
     <div className={`UserInter`}>
-      
       <div className='about'>
         <Link to="/About">
-          <div className={`font-sans text-lg text-white hover:text-red-500`}>ABOUT</div>
+          <div className={`font-Rajdhani font-bold text-3xl text-white hover:text-red-500`}>ABOUT</div>
         </Link>
       </div>
     </div>
