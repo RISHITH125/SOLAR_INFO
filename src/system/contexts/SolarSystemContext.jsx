@@ -1,5 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import dotenv from 'dotenv';
+dotenv.config();
 
+const SERVER_HOST = process.env.SERVER_HOST || 'http://localhost:8000';
 const SolarSystemContext = createContext();
 
 export const useSolarSystem = () => {
