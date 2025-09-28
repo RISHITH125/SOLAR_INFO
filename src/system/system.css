@@ -849,12 +849,12 @@ body::before {
     height: calc(25vw / 2);
     top: calc(-30vw);
     border-radius: calc(20vw) calc(20vw) 0vw 0vw;
-    background-color: #ffc680;
+    background-color: #5ccee2;
     animation: rot_i 5s infinite linear;
     background-image: url("textures/2k_uranus.jpg");
-    background-size: cover;
-    background-repeat: repeat;
-    background-position: 0 90px;
+    background-size: 100% 200%; /* Make background twice as tall */
+    background-position: center top; /* Position to show top half */
+    background-repeat: no-repeat;
     /* box-shadow: inset calc(-2vw) 0 2vw 0 rgba(0, 0, 0, 0.8); */
   }
 
@@ -867,7 +867,15 @@ body::before {
     left: -10vw;
     top: calc(-3vw);
     transform: rotate3d(1, 0, 0, 50deg);
-    border: solid calc(3vw) rgba(126, 249, 249, 0.533);
+    background: radial-gradient(ellipse at center,
+      transparent calc(50% - 3vw), /* Inner transparent core */
+      rgba(126, 249, 249, 0.2) calc(50% - 2vw), /* Lighter inner ring */
+      rgba(126, 249, 249, 0.6) calc(50% - 1vw), /* Main ring fade-in */
+      rgba(126, 249, 249, 0.8) 50%, /* Main ring body - peak opacity */
+      rgba(100, 220, 220, 0.6) calc(50% + 1vw), /* Slightly darker outer edge */
+      rgba(126, 249, 249, 0.3) calc(50% + 2vw), /* Fading outer transition */
+      transparent calc(50% + 3vw) /* Outer transparent area */
+    );
   }
   
   .ringu-i::before,
@@ -880,11 +888,29 @@ body::before {
   }
   
   .ringu-i::before {
-    border: solid calc(5vw) rgba(60, 122, 122, 0.533);
+    background: radial-gradient(ellipse at center,
+      transparent calc(50% - 5vw), /* Inner transparent core */
+      rgba(60, 122, 122, 0.1) calc(50% - 4vw), /* Very light outer ring start */
+      rgba(60, 122, 122, 0.4) calc(50% - 3vw), /* Building intensity */
+      rgba(60, 122, 122, 0.7) calc(50% - 1vw), /* Main ring fade-in */
+      rgba(60, 122, 122, 0.8) 50%, /* Peak opacity */
+      rgba(50, 100, 100, 0.6) calc(50% + 1vw), /* Darker outer edge */
+      rgba(60, 122, 122, 0.4) calc(50% + 3vw), /* Fade out */
+      rgba(60, 122, 122, 0.2) calc(50% + 4vw), /* Final fade */
+      transparent calc(50% + 5vw) /* Outer transparent */
+    );
   }
   
   .ringu-i::after {
-    border: solid calc(2vw)  rgba(71, 164, 164, 0.533);
+    background: radial-gradient(ellipse at center,
+      transparent calc(50% - 2vw), /* Inner transparent core */
+      rgba(71, 164, 164, 0.2) calc(50% - 1.5vw), /* Light inner ring start */
+      rgba(71, 164, 164, 0.6) calc(50% - 0.5vw), /* Main ring fade-in */
+      rgba(71, 164, 164, 0.8) 50%, /* Peak ring opacity */
+      rgba(60, 140, 140, 0.6) calc(50% + 0.5vw), /* Slightly darker outer */
+      rgba(71, 164, 164, 0.3) calc(50% + 1.5vw), /* Fade out */
+      transparent calc(50% + 2vw) /* Outer transparent */
+    );
     /* transform: rotate(60deg); */
   }
   
