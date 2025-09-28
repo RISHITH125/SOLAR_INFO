@@ -126,7 +126,7 @@ export const SolarSystemProvider = ({ children }) => {
         const planetCenterX = planetRect.x + planetRect.width / 2;
         const planetCenterY = planetRect.y + planetRect.height / 2;
         const deltaX = destCenterX - planetCenterX - 30;
-        const deltaY = destCenterY - planetCenterY - 5;
+        const deltaY = destCenterY - planetCenterY;
         const SystemTranslation = { x: deltaX, y: deltaY, errX: errorX, errY: errorY };
         console.log('errorX:', errorX, 'errorY:', errorY);
         console.log('deltaX:', deltaX, 'deltaY:', deltaY);

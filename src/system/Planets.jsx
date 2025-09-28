@@ -2,7 +2,7 @@
 import './PreLoader.css'
 import { less } from '../assets'
 import { Link, useLocation } from 'react-router-dom'
-import { Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune , Sun } from './Heaven/hbods'
+import { Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Sun } from './Heaven/hbods'
 import { useSolarSystem } from './contexts/SolarSystemContext';
 import { usePlanet } from './hooks/usePlanet';
 
@@ -24,8 +24,8 @@ const ErrorMessage = ({ error, onRetry }) => {
         <p className='text-red-400'>Failed to load planet information</p>
         <p className='text-gray-400 text-sm'>{error}</p>
         {onRetry && (
-          <button 
-            onClick={onRetry} 
+          <button
+            onClick={onRetry}
             className='px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm transition-colors'
           >
             Retry
@@ -81,39 +81,51 @@ const Planet = (props) => {
     if (error) {
       return <ErrorMessage error={error} onRetry={handleRetry} />;
     }
-    
+
     if (isLoading) {
       return <TextLoader />;
     }
-    
+
     if (planetData && planetData.info) {
       return planetData.info;
     }
-    
+
     return <div className='text-gray-400 py-4'>No information available for this planet.</div>;
   };
 
   return (
-    <div className='m-6 text-white flex flex-col items-center gap-6 w-[95vw] h-fit'>
-      <Link to="/" className='absolute left-10' onClick={resetAnimation}>
-        <img src={less} className="w-[20px] h-fit"/>
+    <div className='w-[100vw] h-[100vh] flex items-center justify-center'>
+      <Link 
+        to="/" 
+        className='fixed left-10 top-10 z-[9999] bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all' 
+        onClick={resetAnimation}
+      >
+        <img src={less} className="w-[20px] h-fit" />
       </Link>
-      <div className='text-3xl m-2 border-b-2'>{heading}</div>
-      <div className={`flex md:flex-row flex-col w-[95vw] h-fit items-center ${props.name === "saturn" || props.name === "uranus" ? "md:justify-between" : "md:justify-around"}`}>
-        {props.name !== "sun" ? (
-          <div className={`px-4 h-fit ${props.name === "uranus" || props.name === "saturn" ? "w-[85vw] flex flex-row px-20" : "w-fit"}`}>
-            {DynamicPlanets()}
+
+      <div className='m-6 text-white flex items-center gap-20 justify-center'>
+        <div className={`flex md:flex-row flex-col items-center gap-[5vw] ${props.name === "saturn" || props.name === "uranus" ? "md:justify-between gap-[25vw]" : "md:justify-around"}`}>
+          {props.name !== "sun" ? (
+            <div className={`px-4 ${props.name === "uranus" || props.name === "saturn" ? "flex flex-row px-20" : ""}`}>
+              {DynamicPlanets()}
+            </div>
+          ) : (
+            <div className="w-fit mr-10">
+              <Sun />
+            </div>
+          )}
+          <div>
+            <div className='text-8xl pb-4 m-2 border-b-4 font-black '>{heading + "."}</div>
+            <div className={`max-w-2xl max-h-md  font-bold ${props.name !== "sun" ? "md:w-[45vw]" : "md:w-[84vw]"} border-l-white border-l-4 px-4`}>
+              {renderTextContent()}
+            </div>
           </div>
-        ) : (
-          <div className="w-fit mr-10">
-            <Sun />
-          </div>
-        )}
-        <div className={`w-[84vw] ${props.name !== "sun" ? "md:w-[45vw]" : "md:w-[84vw]"} h-fit border-l-white border-l-2 px-4`}>
-          {renderTextContent()}
         </div>
       </div>
+
     </div>
+
+
   );
 }
 
