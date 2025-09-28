@@ -127,17 +127,17 @@ const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor,
 
 
   const viewportWidth = window.innerWidth;
-  const leftvalue = viewportWidth >= 800 ? '3vw' : '0.2vw'
-  const leftvaluesep = viewportWidth >= 800 ? '6.5vw' : '6.5vw'
-  // const leftvalue='3vw'
+  const leftvalue = viewportWidth >= 800 ? '6.5vw' : '-1.5vw'
+  // const leftvaluesep = viewportWidth >= 800 ? '6.5vw' : '6.5vw'
+
 
 
   return (
     <div className=''>
       <div ref={main} className={`main flex justify-center items-center`} style={mainStyle}>
         <div className="sun flex absolute items-center">
-          <h1 className={`absolute font-Audiowide text-sm text-white left-[${leftvalue}] info`} style={opacityClass}>SOLAR</h1>
-          <h1 className={`absolute font-Audiowide text-sm text-white left-[${leftvaluesep}] info`} style={opacityClass}>INFO</h1>
+          <h1 className={`absolute font-Audiowide text-xs text-white left-[${leftvalue}] info`} style={opacityClass}>SOLAR INFO</h1>
+          {/* <h1 className={`absolute font-Audiowide text-xs text-white left-[${leftvaluesep}] info`} style={opacityClass}></h1> */}
         </div>
 
 
