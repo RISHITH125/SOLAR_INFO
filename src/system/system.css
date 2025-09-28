@@ -748,7 +748,7 @@ body::before {
     width: 25vw;
     height: 25vw;
     background-size: cover;
-    background-repeat: repeat;
+    /* background-repeat: repeat; */
     /* animation: rot_i 5s infinite linear; */
     /* background-position: 0% calc(0.1vw * var(--planet-size-multiplier)); */
     background-color: #dcb07a;
@@ -765,42 +765,68 @@ body::before {
     background-color: #ffc680;
     animation: rot_i 5s infinite linear;
     background-image: url("textures/2k_saturn.jpg");
-    background-size: cover;
-    background-repeat: repeat;
-    /* background-position: 10% 10%; */
+    background-size: 100% 200%; /* Make background twice as tall */
+    background-position: center top; /* Position to show top half */
+    background-repeat: no-repeat;
     box-shadow: inset calc(-2vw) 0 2vw 0 rgba(0, 0, 0, 0.8);
   }
 
   
   .rings-i {
-    width: calc(45vw);
-    height: calc(30vw);
-    border-radius: 50%;
-    position: relative;
-    left: -10vw;
-    top: calc(-3vw);
-    transform: rotate3d(1, 0, 0, 50deg);
-    border: solid calc(1vw) #43403d88;
-  }
-  
-  .rings-i::before,
-  .rings-i::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-  }
-  
-  .rings-i::before {
-    border: solid calc(5vw) #4e473fd3;
-  }
-  
-  .rings-i::after {
-    border: solid calc(2vw)  #2c261f9e;
-    /* transform: rotate(60deg); */
-  }
-  
+  width: calc(45vw);
+  height: calc(30vw);
+  border-radius: 50%;
+  position: relative;
+  left: -10vw;
+  top: calc(-3vw);
+  transform: rotate3d(1, 0, 0, 50deg);
+  /* Primary ring color and structure */
+  background: radial-gradient(ellipse at center,
+      transparent calc(50% - 1.5vw), /* Inner transparent core */
+      rgba(150, 130, 100, 0.4) calc(50% - 1vw), /* Lighter inner ring */
+      rgba(120, 100, 70, 0.8) 50%, /* Main ring body - more opaque, slightly darker */
+      rgba(90, 75, 50, 0.6) calc(50% + 1vw), /* Darker outer edge of main ring */
+      rgba(150, 130, 100, 0.3) calc(50% + 1.5vw), /* Fading outer transition */
+      transparent calc(50% + 2vw) /* Outer transparent area */
+  );
+}
+
+.rings-i::before,
+.rings-i::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.rings-i::before {
+
+  background: radial-gradient(ellipse at center,
+      transparent calc(50% - 7vw), /* Larger inner gap */
+      rgba(200, 180, 150, 0.2) calc(50% - 2vw), /* Very light, almost white ringlet */
+      rgba(180, 160, 130, 0.7) calc(50% - 3.5vw), /* Brighter, yellowish band */
+      rgba(160, 140, 110, 0.9) 50%, /* Core of the bright band */
+      rgba(140, 120, 90, 0.7) calc(50% + 3.5vw), /* Fading to darker */
+      rgba(160, 140, 110, 0.3) calc(50% + 4.5vw), /* Outer light ringlet */
+      transparent calc(50% + 6vw) /* Outer transparent area */
+  );
+  /* transform: rotate(10deg); Slightly offset for more complexity */
+}
+
+.rings-i::after {
+  /* This layer will add a darker, sharper gap or a fine dark ringlet */
+  background: radial-gradient(ellipse at center,
+      transparent calc(50% - 3vw), /* Inner transparent area */
+      rgba(60, 50, 40, 0.1) calc(50% - 2.5vw), /* Very subtle dark transition */
+      rgba(40, 30, 20, 0.8) calc(50% - 1.5vw), /* Sharper dark band */
+      rgba(20, 15, 10, 0.95) 50%, /* Deepest dark point, simulating a gap or shadow */
+      rgba(40, 30, 20, 0.7) calc(50% + 0.5vw), /* Fading out from the dark band */
+      rgba(60, 50, 40, 0.3) calc(50% + 2.5vw), /* Outer subtle dark transition */
+      transparent calc(50% + 3vw) /* Outer transparent area */
+  );
+  /* transform: rotate(-20deg); Further offset for more depth */
+}
   
   
   /* Uranus */
