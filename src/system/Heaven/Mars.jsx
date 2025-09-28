@@ -14,7 +14,7 @@ function Mars({ intro }) {
               <div className="mars"></div>
             </span>
           </div>
-          <div className="orbit orbit-ma hover:border-gray-300 z-[50] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
+          <div className="orbit orbit-ma hover:border-white/60 z-[50] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
         </>
       ) : (
         <>

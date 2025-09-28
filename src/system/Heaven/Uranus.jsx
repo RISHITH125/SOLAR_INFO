@@ -18,7 +18,7 @@ function Uranus({ intro }) {
               </div>
             </span>
           </div>
-          <div className="orbit orbit-ur hover:border-gray-300 z-[20] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
+          <div className="orbit orbit-ur hover:border-white/60 z-[20] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
         </>
       ) : (
         <>

@@ -15,7 +15,7 @@ function Neptune({ intro }) {
               <div className="neptune"></div>
           </span>
         </div>
-      <div className= {`orbit orbit-ne hover:border-gray-300 z-[10] cursor-pointer ${animationClass}`} style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
+      <div className= {`orbit orbit-ne hover:border-white/60 z-[10] cursor-pointer ${animationClass}`} style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
       </>
       ):
       (

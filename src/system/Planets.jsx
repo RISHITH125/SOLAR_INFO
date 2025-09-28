@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Sun } from './Heaven/hbods'
 import { useSolarSystem } from './contexts/SolarSystemContext';
 import { usePlanet } from './hooks/usePlanet';
+import {getScrollbarClass} from '../util/customScrollbar';
 
 const TextLoader = () => {
   return (
@@ -47,6 +48,7 @@ const Planet = (props) => {
   const hasData = planetData && Object.keys(planetData).length > 0;
   const isLoading = loading || !hasData;
 
+  const scrollbar = getScrollbarClass('minimal')
   const handleRetry = () => {
     // Force a page reload to retry fetching data
     window.location.reload();
@@ -103,10 +105,10 @@ const Planet = (props) => {
         <img src={less} className="w-[20px] h-fit" />
       </Link>
 
-      <div className='m-6 text-white flex items-center gap-20 justify-center'>
-        <div className={`flex md:flex-row flex-col items-center gap-[5vw] ${props.name === "saturn" || props.name === "uranus" ? "md:justify-between gap-[25vw]" : "md:justify-around"}`}>
+      <div className='m-6 text-white flex items-center justify-center'>
+        <div className={`flex md:flex-row flex-col items-center  ${props.name === "saturn" || props.name === "uranus" ? "md:justify-between gap-[25vw]" : "md:justify-around gap-[5vw]"}`}>
           {props.name !== "sun" ? (
-            <div className={`px-4 ${props.name === "uranus" || props.name === "saturn" ? "flex flex-row px-20" : ""}`}>
+            <div className={`px-4 `}>
               {DynamicPlanets()}
             </div>
           ) : (
@@ -116,11 +118,15 @@ const Planet = (props) => {
           )}
           <div>
             <div className='text-8xl pb-4 m-2 border-b-4 font-black '>{heading + "."}</div>
-            <div className={`max-w-2xl max-h-md  font-bold ${props.name !== "sun" ? "md:w-[45vw]" : "md:w-[84vw]"} border-l-white border-l-4 px-4`}>
+            <div className={`max-w-2xl max-h-[40vh] overflow-y-auto font-bold ${props.name !== "sun" ? "md:w-[45vw]" : "md:w-[84vw]"} border-l-white border-l-4 px-4 pr-2 ${scrollbar}`}>
               {renderTextContent()}
             </div>
           </div>
         </div>
+      </div>
+
+      <div>
+        
       </div>
 
     </div>

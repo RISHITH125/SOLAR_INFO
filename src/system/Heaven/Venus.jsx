@@ -14,7 +14,7 @@ function Venus({ intro }) {
               <div className="venus"></div>
             </span>
           </div>
-          <div className="orbit orbit-ve hover:border-gray-300 z-[70] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
+          <div className="orbit orbit-ve hover:border-white z-[70] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
         </>
       ) : (
         <>

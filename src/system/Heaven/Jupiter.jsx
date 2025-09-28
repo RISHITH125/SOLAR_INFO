@@ -14,7 +14,7 @@ function Jupiter({ intro }) {
               <div className="jupiter"></div>
           </span>
         </div>
-        <div className="orbit orbit-ju hover:border-gray-300 z-[40] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}>
+        <div className="orbit orbit-ju hover:border-white/60 z-[40] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}>
         </div>
 
       </>

@@ -15,7 +15,7 @@ function Mercury({ intro }) {
             </span>
           </div>
 
-          <div className="orbit orbit-me hover:border-gray-300 z-[80] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
+          <div className="orbit orbit-me hover:border-white/60 z-[80] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
         </>
       ) : (
         <>

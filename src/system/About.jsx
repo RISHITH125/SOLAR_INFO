@@ -1,4 +1,4 @@
-import Profile from "./profilessss/Profile";
+import Profile from "./profiles/Profile";
 import { rahul, less, Rishith, Prathik } from '../assets'
 import { Link } from "react-router-dom";
 import { linksPrathik, linksRahul , linksRishith } from "../../constants";

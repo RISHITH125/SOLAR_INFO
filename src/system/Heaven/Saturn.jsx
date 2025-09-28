@@ -18,7 +18,7 @@ function Saturn({ intro }) {
               </div>
             </span>      
           </div>  
-          <div className="orbit orbit-sa hover:border-gray-300 z-[30] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
+          <div className="orbit orbit-sa hover:border-white/60 z-[30] cursor-pointer" style={FocusStyle.orbitStyle} onClick={intro ? null : handleClick}></div>
         </>
       ) : (
         <>
