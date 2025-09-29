@@ -126,9 +126,41 @@ const System = ({ intro, setIntro, scaleFactor, setScaleFactor, translateFactor,
   };
 
 
-  const viewportWidth = window.innerWidth;
-  const leftvalue = viewportWidth >= 800 ? '6.5vw' : '-1.5vw'
-  // const leftvaluesep = viewportWidth >= 800 ? '6.5vw' : '6.5vw'
+  // Responsive viewport calculations
+  const [viewportDimensions, setViewportDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Responsive left value calculation
+  const getLeftValue = () => {
+    const { width, height } = viewportDimensions;
+    
+    // If height > width (portrait mode), use mobile values
+    if (height > width) {
+      return '3vw';
+    }
+    
+    // Responsive breakpoints for landscape/desktop
+    if (width >= 1200) return '6.5vw';      // Large desktop
+    if (width >= 800) return '5.5vw';     // Desktop/tablet landscape
+    if (width >= 600) return '4vw';       // Small tablet
+    return '-1.5vw';                      // Mobile
+  };
+
+  const leftvalue = getLeftValue();
 
 
 
