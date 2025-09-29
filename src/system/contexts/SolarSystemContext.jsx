@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import dotenv from 'dotenv';
-dotenv.config();
 
-const SERVER_HOST = process.env.SERVER_HOST || 'http://localhost:8000';
+// In Vite, environment variables are accessed via import.meta.env
+// and must be prefixed with VITE_ to be available in client-side code
+const SERVER_HOST = import.meta.env.VITE_SERVER_HOST || 'http://localhost:8000';
 const SolarSystemContext = createContext();
 
 export const useSolarSystem = () => {
@@ -32,7 +32,7 @@ export const SolarSystemProvider = ({ children }) => {
       
       try {
         for (const planet of allPlanets) {
-          const res = await fetch(`http://localhost:8000/planets/${planet}`);
+          const res = await fetch(`http://${SERVER_HOST}/planets/${planet}`);
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const d = await res.json();
           setPlanetInfo(prev => ({
@@ -138,7 +138,6 @@ export const SolarSystemProvider = ({ children }) => {
         const scale = 15;
 
         const result = { SystemTranslation, scale };
-        console.log('✅ getMetrics result:', result);
         return result;
       }
     } catch (error) {

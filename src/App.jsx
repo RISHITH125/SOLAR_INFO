@@ -18,7 +18,7 @@ function App() {
     if (viewportWidth >= 800) {
       return 1200
     } else{
-      return 600
+      return 1000
     } 
   }
   function getInitialTranslateFactor() {
