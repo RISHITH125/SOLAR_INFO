@@ -442,7 +442,7 @@ body::before {
 .topu
 {
         position: relative;
-        width:calc(var(--size-ur) -4px);
+        width:calc(var(--size-ur)-4px);
         height:calc(var(--size-ur)/2 -4px);
         top:calc(-3.0vw * var(--planet-size-multiplier));
         border-radius:calc(10.0vw * var(--planet-size-multiplier)) calc(10.0vw * var(--planet-size-multiplier)) 0vw 0vw;

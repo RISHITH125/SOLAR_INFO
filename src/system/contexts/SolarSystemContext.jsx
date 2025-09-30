@@ -32,7 +32,7 @@ export const SolarSystemProvider = ({ children }) => {
       
       try {
         for (const planet of allPlanets) {
-          const res = await fetch(`http://${SERVER_HOST}/planets/${planet}`);
+          const res = await fetch(`${SERVER_HOST}/planets/${planet}`);
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const d = await res.json();
           setPlanetInfo(prev => ({
@@ -106,7 +106,7 @@ export const SolarSystemProvider = ({ children }) => {
 
 
   const getMetrics = (planetName) => {
-    console.log('🔍 getMetrics called with:', planetName);
+    // console.log('🔍 getMetrics called with:', planetName);
 
     const mainSystem = document.querySelector('.main');
     const planetHolder = document.querySelector(`.${planetName}-hb`);
@@ -131,8 +131,8 @@ export const SolarSystemProvider = ({ children }) => {
         const deltaX = destCenterX - planetCenterX - 30;
         const deltaY = destCenterY - planetCenterY;
         const SystemTranslation = { x: deltaX, y: deltaY, errX: errorX, errY: errorY };
-        console.log('errorX:', errorX, 'errorY:', errorY);
-        console.log('deltaX:', deltaX, 'deltaY:', deltaY);
+        // console.log('errorX:', errorX, 'errorY:', errorY);
+        // console.log('deltaX:', deltaX, 'deltaY:', deltaY);
 
         // 🔍 SCALE: Make planet bigger (reasonable zoom level)
         const scale = 15;
